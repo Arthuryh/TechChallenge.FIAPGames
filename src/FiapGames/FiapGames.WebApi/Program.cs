@@ -1,5 +1,11 @@
-var builder = WebApplication.CreateBuilder(args);
+using FiapGames.Application.Interfaces;
+using FiapGames.Application.Servicos;
+using FiapGames.Infrastructure.Interfaces;
+using FiapGames.Infrastructure.Repositorios;
 
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddScoped<ILoginRepositorio, LoginRepositorio>();
+builder.Services.AddScoped<ILoginServico, LoginServico>();
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -8,6 +14,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
