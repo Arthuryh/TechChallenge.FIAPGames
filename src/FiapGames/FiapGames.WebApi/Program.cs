@@ -1,9 +1,19 @@
 using FiapGames.Application.Interfaces;
 using FiapGames.Application.Servicos;
+using FiapGames.Infrastructure.Contextos;
 using FiapGames.Infrastructure.Interfaces;
 using FiapGames.Infrastructure.Repositorios;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("FIAPGamesConnection");
+
+builder.Services.AddDbContext<FIAPGamesContext>(opts =>
+    opts
+    .UseLazyLoadingProxies()
+    .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
 builder.Services.AddScoped<ILoginRepositorio, LoginRepositorio>();
 builder.Services.AddScoped<ILoginServico, LoginServico>();
 // Add services to the container.
