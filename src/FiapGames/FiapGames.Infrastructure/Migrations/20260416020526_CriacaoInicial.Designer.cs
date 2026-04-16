@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FiapGames.Infrastructure.Migrations
 {
     [DbContext(typeof(FIAPGamesContext))]
-    [Migration("20260415021139_inicial")]
-    partial class inicial
+    [Migration("20260416020526_CriacaoInicial")]
+    partial class CriacaoInicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -72,9 +72,6 @@ namespace FiapGames.Infrastructure.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
-                    b.Property<int>("IdConta")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -86,6 +83,9 @@ namespace FiapGames.Infrastructure.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("IdLogin");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Logins");
                 });

@@ -4,6 +4,8 @@ namespace FiapGames.Infrastructure.Interfaces
 {
     public interface ILoginRepositorio
     {
-        bool Criar(Login login);
+        Task AdicionarLogin(Login login);
+        Task<Login?> ObterLoginPorId(int id);
+        Task<IEnumerable<Login>> ObterLogins();
     }
 }

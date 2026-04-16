@@ -16,38 +16,30 @@ namespace FiapGames.WebApi.Controllers
         {
             _loginServico = loginServico;
         }
-        // GET: api/<LoginController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
 
-        // GET api/<LoginController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<LoginController>
         [HttpPost]
-        public IActionResult Post([FromBody] LoginDTO loginDTO)
+        public async Task<IActionResult> CriarLogin([FromBody] CriarLoginDTO loginDTO)
         {
-            var resultado = _loginServico.CriarLogin(loginDTO);
-            return Ok(resultado);
+            CriarLoginDTO novoLogin = await _loginServico.CriarLogin(loginDTO);
+            return CreatedAtAction(nameof(ObterPorId), novoLogin);
         }
 
-        // PUT api/<LoginController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> ObterPorId(int id)
         {
+            var usuario = await _loginServico.ObterLoginPorId(id);
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+            return Ok(usuario);
         }
 
-        // DELETE api/<LoginController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpGet]
+        public async Task<IActionResult> ObterTodosLogins()
         {
+            var usuarios = await _loginServico.ObterLogins();
+            return Ok(usuarios);
         }
     }
 }

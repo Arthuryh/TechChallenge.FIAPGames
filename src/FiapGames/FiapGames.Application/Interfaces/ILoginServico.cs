@@ -4,7 +4,8 @@ namespace FiapGames.Application.Interfaces
 {
     public interface ILoginServico
     {
-        LoginDTO CriarLogin(LoginDTO loginDTO);
-        LoginDTO ObterLoginPorEmail(string email);
+        Task<CriarLoginDTO> CriarLogin(CriarLoginDTO loginDTO);
+        Task<LerLoginDTO?> ObterLoginPorId(int id);
+        Task<IEnumerable<LerLoginDTO>> ObterLogins();
     }
 }

@@ -1,17 +1,37 @@
 ﻿using FiapGames.Domain.Entidades;
+using FiapGames.Infrastructure.Contextos;
 using FiapGames.Infrastructure.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace FiapGames.Infrastructure.Repositorios
 {
     public class LoginRepositorio : ILoginRepositorio
     {
-            public bool Criar(Login login)
-            {
-            // Lógica para criar um login no banco de dados
-            // Retorna true se a criação for bem-sucedida, caso contrário, false
-            
+        private readonly FIAPGamesContext _context;
 
-            return true; // Simulação de sucesso
+        public LoginRepositorio(FIAPGamesContext context)
+        {
+            _context = context;
+        }
+
+        public async Task AdicionarLogin(Login login)
+        {
+            await _context.Logins.AddAsync(login);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<Login?> ObterLoginPorId(int id)
+        {
+            return await _context.Logins
+                .AsNoTracking()
+                .FirstOrDefaultAsync(l => l.IdLogin == id);
+        }
+
+        public async Task<IEnumerable<Login>> ObterLogins()
+        {
+            return await _context.Logins
+                .AsNoTracking()
+                .ToListAsync();
         }
     }
 }
