@@ -24,8 +24,7 @@
         public void AdicionarItem(Jogo jogo)
         {
             var preco = jogo.ObterPrecoAtual();
-
-            CompraJogos.Add(new CompraJogo(jogo.Id, preco));
+            CompraJogos = [new CompraJogo(jogo.Id, preco)];
 
             ValorTotalBruto += jogo.Preco;
             ValorTotalLiquido += preco;

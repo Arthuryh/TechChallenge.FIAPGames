@@ -18,7 +18,7 @@ namespace FiapGames.Application.Servicos
 
         public async Task CriarCompra(CriarCompraDto dto)
         {
-            var compra = new Compra();
+            var compra = new Compra(0);
 
             foreach (var jogoId in dto.JogosIds)
             {
