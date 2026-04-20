@@ -1,4 +1,4 @@
-﻿namespace FiapGames.Application.DTOs
+﻿namespace FiapGames.Application.DTOs.Login
 {
     public class LoginDTO
     {

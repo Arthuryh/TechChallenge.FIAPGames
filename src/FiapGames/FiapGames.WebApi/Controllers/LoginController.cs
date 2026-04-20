@@ -1,4 +1,4 @@
-﻿using FiapGames.Application.DTOs;
+﻿using FiapGames.Application.DTOs.Login;
 using FiapGames.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
