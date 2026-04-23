@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace FiapGames.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class inicial : Migration
+    public partial class CriacaoInicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -28,8 +28,7 @@ namespace FiapGames.Infrastructure.Migrations
                     PasswordHash = table.Column<string>(type: "varchar(255)", maxLength: 255, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     DataCriacao = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    Ativo = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    IdConta = table.Column<int>(type: "int", nullable: false)
+                    Ativo = table.Column<bool>(type: "tinyint(1)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,9 +42,9 @@ namespace FiapGames.Infrastructure.Migrations
                 {
                     IdConta = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    IdLogin = table.Column<int>(type: "int", nullable: false),
                     Saldo = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
-                    DataAtualizacao = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    IdLogin = table.Column<int>(type: "int", nullable: false)
+                    DataAtualizacao = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -63,6 +62,12 @@ namespace FiapGames.Infrastructure.Migrations
                 name: "IX_Contas_IdLogin",
                 table: "Contas",
                 column: "IdLogin",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Logins_Email",
+                table: "Logins",
+                column: "Email",
                 unique: true);
         }
 

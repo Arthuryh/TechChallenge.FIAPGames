@@ -1,8 +1,8 @@
 ﻿using FiapGames.Application.DTOs.Compra;
-using FiapGames.Application.Interfaces;
+using FiapGames.Application.Interfaces.Compra;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FiapGames.WebApi.Controllers
+namespace FiapGames.WebApi.Controllers.Compra
 {
     [Route("api/[controller]")]
     [ApiController]

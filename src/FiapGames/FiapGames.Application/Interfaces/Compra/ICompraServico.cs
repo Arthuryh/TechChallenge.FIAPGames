@@ -1,6 +1,6 @@
 ﻿using FiapGames.Application.DTOs.Compra;
 
-namespace FiapGames.Application.Interfaces
+namespace FiapGames.Application.Interfaces.Compra
 {
     public interface ICompraServico
     {

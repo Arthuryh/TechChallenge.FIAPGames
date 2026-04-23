@@ -140,9 +140,6 @@ namespace FiapGames.Infrastructure.Migrations
                         .HasMaxLength(150)
                         .HasColumnType("varchar(150)");
 
-                    b.Property<int>("IdConta")
-                        .HasColumnType("int");
-
                     b.Property<string>("Nome")
                         .IsRequired()
                         .HasMaxLength(150)
@@ -154,6 +151,9 @@ namespace FiapGames.Infrastructure.Migrations
                         .HasColumnType("varchar(255)");
 
                     b.HasKey("IdLogin");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("Logins");
                 });

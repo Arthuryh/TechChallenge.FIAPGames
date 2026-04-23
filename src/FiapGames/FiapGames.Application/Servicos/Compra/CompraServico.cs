@@ -1,7 +1,7 @@
 ﻿using FiapGames.Application.DTOs.Compra;
-using FiapGames.Application.Interfaces;
+using FiapGames.Application.Interfaces.Compra;
 using FiapGames.Domain.Entidades;
-using FiapGames.Infrastructure.Interfaces;
+using FiapGames.Infrastructure.Interfaces;     
 
 namespace FiapGames.Application.Servicos
 {
