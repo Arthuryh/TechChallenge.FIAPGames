@@ -45,6 +45,7 @@ namespace FiapGames.Application.Servicos
 
         public async Task<LerLoginDTO> ObterLoginPorEmail(string email) // revisar implementação
         {
+            //validacao de email
             var login = await _repositorio.ObterLoginPorEmail(email);
 
             if (login == null) throw new Exception("Login não encontrado");

@@ -52,6 +52,7 @@ namespace FiapGames.Infrastructure.Repositorios
         {
             return await _context.Logins
                 .AsNoTracking()
+                //.Include(l => l.Conta)
                 .ToListAsync();
         }
     }
