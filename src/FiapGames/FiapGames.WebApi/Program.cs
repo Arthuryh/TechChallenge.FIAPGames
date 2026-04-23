@@ -1,4 +1,4 @@
-using FiapGames.Application.Interfaces;
+using FiapGames.Application.Interfaces.Login;
 using FiapGames.Application.Servicos;
 using FiapGames.Infrastructure.Contextos;
 using FiapGames.Infrastructure.Interfaces;

@@ -1,7 +1,7 @@
-﻿using FiapGames.Application.DTOs;
-using FiapGames.Application.Interfaces;
-using FiapGames.Domain.Entidades;
+﻿using FiapGames.Application.DTOs.Login;
+using FiapGames.Application.Interfaces.Login;
 using FiapGames.Infrastructure.Interfaces;
+using FiapGames.Domain.Entidades;
 
 namespace FiapGames.Application.Servicos
 {
@@ -36,15 +36,30 @@ namespace FiapGames.Application.Servicos
                 IdLogin = login.IdLogin,
                 Nome = login.Nome,
                 Email = login.Email,
-                PasswordHash = ""
+                PasswordHash = "",
+                Ativo = login.Ativo ? "Sim" : "Não"
             };
 
             return retornoDTO;
         }
 
-        public async Task<LerLoginDTO> ObterLoginPorEmail(string email) // pensar em como implementar
+        public async Task<LerLoginDTO> ObterLoginPorEmail(string email) // revisar implementação
         {
-            throw new NotImplementedException();
+            var login = await _repositorio.ObterLoginPorEmail(email);
+
+            if (login == null) throw new Exception("Login não encontrado");
+
+            // Mapear a Entidade de volta para o DTO
+            var retornoDTO = new LerLoginDTO
+            {
+                IdLogin = login.IdLogin,
+                Nome = login.Nome,
+                Email = login.Email,
+                PasswordHash = "",
+                Ativo = login.Ativo ? "Sim" : "Não"
+            };
+
+            return retornoDTO;
         }
 
         public async Task<IEnumerable<LerLoginDTO>> ObterLogins()
@@ -57,10 +72,31 @@ namespace FiapGames.Application.Servicos
                     IdLogin = login.IdLogin,
                     Nome = login.Nome,
                     Email = login.Email,
-                    PasswordHash = ""
+                    PasswordHash = "",
+                    Ativo = login.Ativo ? "Sim" : "Não"
                 });
             }
             return logins;
+        }
+
+        public async Task AtualizarLogin(AtualizarLoginDTO loginDTO)
+        {
+            var login = await _repositorio.ObterLoginPorId(loginDTO.IdLogin);
+
+            if (login == null) throw new Exception("Login não encontrado");
+
+            login.AtualizarLogin(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash);
+
+            await _repositorio.AtualizarLogin(login);
+        }
+
+        public async Task DeletarLogin(int id)
+        {
+            var login = await _repositorio.ObterLoginPorId(id);
+
+            if (login == null) throw new Exception("Login não encontrado");
+
+            await _repositorio.DesativarLogin(id);
         }
     }
 }

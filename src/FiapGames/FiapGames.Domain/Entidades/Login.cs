@@ -30,5 +30,17 @@ namespace FiapGames.Domain.Entidades
 
             Conta = new Conta(0m);
         }
+
+        public void AtualizarLogin(string nome, string email, string passwordHash)
+        {
+            Nome = nome;
+            Email = email; 
+            PasswordHash = passwordHash;
+        }
+
+        public void DesativarLogin()
+        {
+            Ativo = false;
+        }
     }
 }

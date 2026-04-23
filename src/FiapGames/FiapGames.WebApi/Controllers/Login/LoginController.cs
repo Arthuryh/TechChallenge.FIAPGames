@@ -1,10 +1,11 @@
-﻿using FiapGames.Application.DTOs;
-using FiapGames.Application.Interfaces;
+﻿using FiapGames.Application.DTOs.Login;
+using FiapGames.Application.Interfaces.Login;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace FiapGames.WebApi.Controllers
+namespace FiapGames.WebApi.Controllers.Login
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,22 +25,48 @@ namespace FiapGames.WebApi.Controllers
             return CreatedAtAction(nameof(ObterPorId), novoLogin);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id:int}")]
         public async Task<IActionResult> ObterPorId(int id)
         {
             var usuario = await _loginServico.ObterLoginPorId(id);
             if (usuario == null)
             {
-                return NotFound();
+                return BadRequest();
             }
             return Ok(usuario);
         }
+
+        [HttpGet("email/{email}")]
+        public async Task<IActionResult> ObterPorEmail(string email)
+        {
+            var usuario = await _loginServico.ObterLoginPorEmail(email);
+            if (usuario == null)
+            {
+                return BadRequest();
+            }
+            return Ok(usuario);
+        }
+
 
         [HttpGet]
         public async Task<IActionResult> ObterTodosLogins()
         {
             var usuarios = await _loginServico.ObterLogins();
             return Ok(usuarios);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> AtualizarLogin([FromBody] AtualizarLoginDTO loginDTO)
+        {
+            await _loginServico.AtualizarLogin(loginDTO);
+            return Ok();
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeletarLogin(int id)
+        {
+            await _loginServico.DeletarLogin(id);
+            return Ok();
         }
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace FiapGames.Application.DTOs
+﻿namespace FiapGames.Application.DTOs.Login
 {
-    public class LerLoginDTO
+    public class AtualizarLoginDTO
     {
         public int IdLogin { get; set; }
         public string Nome { get; set; }
