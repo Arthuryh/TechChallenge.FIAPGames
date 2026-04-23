@@ -3,7 +3,7 @@ using FiapGames.Application.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FiapGames.WebApi.Controllers
+namespace FiapGames.WebApi.Controllers.Promocao
 {
     [Route("api/[controller]")]
     [ApiController]

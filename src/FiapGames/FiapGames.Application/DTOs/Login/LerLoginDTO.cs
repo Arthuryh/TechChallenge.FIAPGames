@@ -1,11 +1,10 @@
 ﻿namespace FiapGames.Application.DTOs.Login
 {
-    public class LerLoginDTO
-    {
-        public int IdLogin { get; set; }
-        public string Nome { get; set; }
-        public string Email { get; set; }
-        public string PasswordHash { get; set; }
-        public string Ativo { get; set; }
-    }
+    public record LerLoginDTO(
+        int IdLogin,
+        string Nome,
+        string Email,
+        string PasswordHash,
+        string Ativo
+        );
 }

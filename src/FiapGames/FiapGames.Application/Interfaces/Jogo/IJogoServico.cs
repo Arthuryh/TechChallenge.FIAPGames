@@ -1,7 +1,7 @@
 ﻿using FiapGames.Application.DTOs.Jogo;
 using FiapGames.Application.DTOs.Promocao;
 
-namespace FiapGames.Application.Interfaces
+namespace FiapGames.Application.Interfaces.Jogo
 {
     public interface IJogoServico
     {
