@@ -1,0 +1,18 @@
+﻿namespace FiapGames.Domain.Entidades
+{
+    public class CompraJogo
+    {
+        public int CompraId { get; private set; }
+        public int JogoId { get; private set; }
+
+        public decimal PrecoAplicado { get; private set; }
+
+        private CompraJogo() { }
+
+        public CompraJogo(int jogoId, decimal preco)
+        {
+            JogoId = jogoId;
+            PrecoAplicado = preco;
+        }
+    }
+}

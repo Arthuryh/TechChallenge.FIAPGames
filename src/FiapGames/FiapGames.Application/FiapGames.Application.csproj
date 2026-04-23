@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\FiapGames.Infrastructure\FiapGames.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
