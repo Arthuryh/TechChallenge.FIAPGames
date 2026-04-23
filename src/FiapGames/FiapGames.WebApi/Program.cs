@@ -16,6 +16,16 @@ builder.Services.AddDbContext<FIAPGamesContext>(opts =>
 
 builder.Services.AddScoped<ILoginRepositorio, LoginRepositorio>();
 builder.Services.AddScoped<ILoginServico, LoginServico>();
+
+builder.Services.AddScoped<IJogoRepositorio, JogoRepositorio>();
+builder.Services.AddScoped<IJogoServico, JogoServico>();
+
+builder.Services.AddScoped<ICompraRepositorio, CompraRepositorio>();
+builder.Services.AddScoped<ICompraServico, CompraServico>();
+
+builder.Services.AddScoped<IPromocaoRepositorio, PromocaoRepositorio>();
+builder.Services.AddScoped<IPromocaoServico, PromocaoServico>();
+
 // Add services to the container.
 
 builder.Services.AddControllers();
