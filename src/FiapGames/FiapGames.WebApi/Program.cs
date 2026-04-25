@@ -5,6 +5,9 @@ using Microsoft.EntityFrameworkCore;
 using System.Net;
 using FiapGames.Infrastructure.DI;
 using FiapGames.Application.DI;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 internal class Program
 {
@@ -17,6 +20,29 @@ internal class Program
 
         var connectionString = builder.Configuration.GetConnectionString("FIAPGamesConnection");
 
+        var key = Encoding.ASCII.GetBytes("MINHA_CHAVE_SUPER_SECRETA_COM_32_BYTES!!");
+
+        builder.Services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        })
+        .AddJwtBearer(options =>
+        {
+            options.RequireHttpsMetadata = false; // true em prod
+            options.SaveToken = true;
+            options.TokenValidationParameters = new TokenValidationParameters
+            {
+                ValidateIssuer = false,
+                ValidateAudience = false,
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+
+                RoleClaimType = System.Security.Claims.ClaimTypes.Role
+            };
+        });
+
+        builder.Services.AddAuthorization();
 
         builder.Services.Configure<ApiBehaviorOptions>(options =>
         {
@@ -43,7 +69,6 @@ internal class Program
             .UseLazyLoadingProxies()
             .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-
         builder.Services.AddControllers()
             .ConfigureApiBehaviorOptions(options =>
             {
@@ -64,7 +89,6 @@ internal class Program
                 };
             });
 
-        // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();
 
@@ -72,7 +96,6 @@ internal class Program
 
         app.UseMiddleware<ExceptionMiddleware>();
 
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.UseSwagger();
@@ -81,10 +104,10 @@ internal class Program
 
         app.UseHttpsRedirection();
 
+        app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapControllers();
-
 
         app.Run();
     }
