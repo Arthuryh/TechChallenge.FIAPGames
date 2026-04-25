@@ -1,16 +1,10 @@
-using FiapGames.Application.Interfaces;
-using FiapGames.Application.Interfaces.Compra;
-using FiapGames.Application.Interfaces.Jogo;
-using FiapGames.Application.Interfaces.Login;
-using FiapGames.Application.Servicos;
 using FiapGames.Infrastructure.Contextos;
-using FiapGames.Infrastructure.Interfaces;
 using FiapGames.Infrastructure.Middlewares;
-using FiapGames.Infrastructure.Repositorios;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Net;
-using static FiapGames.Infrastructure.Middlewares.ExceptionMiddleware;
+using FiapGames.Infrastructure.DI;
+using FiapGames.Application.DI;
 
 internal class Program
 {
@@ -18,7 +12,11 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
+        builder.Services.AddRepositorios();
+        builder.Services.AddApplicationServices();
+
         var connectionString = builder.Configuration.GetConnectionString("FIAPGamesConnection");
+
 
         builder.Services.Configure<ApiBehaviorOptions>(options =>
         {
@@ -45,19 +43,6 @@ internal class Program
             .UseLazyLoadingProxies()
             .UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
-        builder.Services.AddScoped<ILoginRepositorio, LoginRepositorio>();
-        builder.Services.AddScoped<ILoginServico, LoginServico>();
-
-        builder.Services.AddScoped<IJogoRepositorio, JogoRepositorio>();
-        builder.Services.AddScoped<IJogoServico, JogoServico>();
-
-        builder.Services.AddScoped<ICompraRepositorio, CompraRepositorio>();
-        builder.Services.AddScoped<ICompraServico, CompraServico>();
-
-        builder.Services.AddScoped<IPromocaoRepositorio, PromocaoRepositorio>();
-        builder.Services.AddScoped<IPromocaoServico, PromocaoServico>();
-
-        // Add services to the container.
 
         builder.Services.AddControllers()
             .ConfigureApiBehaviorOptions(options =>
