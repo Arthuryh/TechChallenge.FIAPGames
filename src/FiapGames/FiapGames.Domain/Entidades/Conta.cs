@@ -12,6 +12,9 @@ namespace FiapGames.Domain.Entidades
         [Column(TypeName = "decimal(10,2)")]
         public decimal Saldo { get; set; }
         public DateTime DataAtualizacao { get; set; }
+        //no futuro, IdTipoConta pode ser um enum para diferenciar diferentes tipos(ex: usuario, admin, outro...)
+        [Required]
+        public int IdTipoConta { get; set; }
 
         public virtual Login Login { get; private set; }
 
@@ -21,7 +24,5 @@ namespace FiapGames.Domain.Entidades
             Saldo = saldoInicial;
             DataAtualizacao = DateTime.UtcNow;
         }
-        /*[Required]
-        public int IdTipoConta { get; set; }*/
     }
 }

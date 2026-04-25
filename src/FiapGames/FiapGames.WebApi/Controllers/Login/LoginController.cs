@@ -21,7 +21,7 @@ namespace FiapGames.WebApi.Controllers.Login
         public async Task<IActionResult> CriarLogin([FromBody] CriarLoginDTO loginDTO)
         {
             CriarLoginDTO novoLogin = await _loginServico.CriarLogin(loginDTO);
-            return CreatedAtAction(nameof(ObterPorId), novoLogin);
+            return Ok(novoLogin);
         }
 
         [HttpGet("{id:int}")]

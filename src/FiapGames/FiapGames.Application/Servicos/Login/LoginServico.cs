@@ -31,16 +31,15 @@ namespace FiapGames.Application.Servicos
             if (login == null) return null;
 
             // Mapear a Entidade de volta para o DTO
-            var retornoDTO = new LerLoginDTO
-            {
-                IdLogin = login.IdLogin,
-                Nome = login.Nome,
-                Email = login.Email,
-                PasswordHash = "",
-                Ativo = login.Ativo ? "Sim" : "Não"
-            };
 
-            return retornoDTO;
+            return new LerLoginDTO
+            (
+                login.IdLogin,
+                login.Nome,
+                login.Email,
+                login.PasswordHash = "",
+                login.Ativo ? "Sim" : "Não"
+            );
         }
 
         public async Task<LerLoginDTO> ObterLoginPorEmail(string email) // revisar implementação
@@ -51,16 +50,14 @@ namespace FiapGames.Application.Servicos
             if (login == null) throw new Exception("Login não encontrado");
 
             // Mapear a Entidade de volta para o DTO
-            var retornoDTO = new LerLoginDTO
-            {
-                IdLogin = login.IdLogin,
-                Nome = login.Nome,
-                Email = login.Email,
-                PasswordHash = "",
-                Ativo = login.Ativo ? "Sim" : "Não"
-            };
-
-            return retornoDTO;
+            return new LerLoginDTO
+            (
+                login.IdLogin,
+                login.Nome,
+                login.Email,
+                login.PasswordHash = "",
+                login.Ativo ? "Sim" : "Não"
+            );
         }
 
         public async Task<IEnumerable<LerLoginDTO>> ObterLogins()
@@ -69,13 +66,13 @@ namespace FiapGames.Application.Servicos
             foreach (var login in await _repositorio.ObterLogins())
             {
                 logins.Add(new LerLoginDTO
-                {
-                    IdLogin = login.IdLogin,
-                    Nome = login.Nome,
-                    Email = login.Email,
-                    PasswordHash = "",
-                    Ativo = login.Ativo ? "Sim" : "Não"
-                });
+                (
+                    login.IdLogin,
+                    login.Nome,
+                    login.Email,
+                    login.PasswordHash = "",
+                    login.Ativo ? "Sim" : "Não"
+                ));
             }
             return logins;
         }
