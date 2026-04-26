@@ -16,7 +16,7 @@ namespace FiapGames.Application.Servicos
         public async Task<CriarLoginDTO> CriarLogin(CriarLoginDTO loginDTO)
         {
             // 1. DE PARA (Mapeamento): O serviço recebe o DTO e transforma na Entidade
-            var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash);
+            var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash, (int)loginDTO.TipoUsuario);
 
             // 2. Chama o Repositório para salvar a Entidade no banco
             await _repositorio.AdicionarLogin(novoLogin);
@@ -38,7 +38,8 @@ namespace FiapGames.Application.Servicos
                 login.Nome,
                 login.Email,
                 login.PasswordHash = "",
-                login.Ativo ? "Sim" : "Não"
+                login.Ativo ? "Sim" : "Não",
+                (int)login.TipoUsuario
             );
         }
 
@@ -56,7 +57,8 @@ namespace FiapGames.Application.Servicos
                 login.Nome,
                 login.Email,
                 login.PasswordHash = "",
-                login.Ativo ? "Sim" : "Não"
+                login.Ativo ? "Sim" : "Não",
+                (int)login.TipoUsuario
             );
         }
 
@@ -71,7 +73,8 @@ namespace FiapGames.Application.Servicos
                     login.Nome,
                     login.Email,
                     login.PasswordHash = "",
-                    login.Ativo ? "Sim" : "Não"
+                    login.Ativo ? "Sim" : "Não",
+                    (int)login.TipoUsuario
                 ));
             }
             return logins;

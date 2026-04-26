@@ -5,6 +5,7 @@
         string Nome,
         string Email,
         string PasswordHash,
-        string Ativo
+        string Ativo,
+        int TipoUsuario
         );
 }

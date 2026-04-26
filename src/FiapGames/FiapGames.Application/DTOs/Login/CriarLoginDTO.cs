@@ -3,6 +3,7 @@
     public record CriarLoginDTO(
         string Nome,
         string Email,
-        string PasswordHash
+        string PasswordHash,
+        int TipoUsuario
         );
 }

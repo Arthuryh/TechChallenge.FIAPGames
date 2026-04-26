@@ -1,11 +1,15 @@
 using FiapGames.Application.Interfaces;
 using FiapGames.Application.Interfaces.Compra;
+using FiapGames.Application.Interfaces.Conta;
 using FiapGames.Application.Interfaces.Jogo;
 using FiapGames.Application.Interfaces.Login;
 using FiapGames.Application.Servicos;
+using FiapGames.Application.Servicos.Conta;
 using FiapGames.Infrastructure.Contextos;
 using FiapGames.Infrastructure.Interfaces;
+using FiapGames.Infrastructure.Interfaces.Conta;
 using FiapGames.Infrastructure.Repositorios;
+using FiapGames.Infrastructure.Repositorios.Conta;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +23,9 @@ builder.Services.AddDbContext<FIAPGamesContext>(opts =>
 
 builder.Services.AddScoped<ILoginRepositorio, LoginRepositorio>();
 builder.Services.AddScoped<ILoginServico, LoginServico>();
+
+builder.Services.AddScoped<IContaRepositorio, ContaRepositorio>();
+builder.Services.AddScoped<IContaServico, ContaServico>();
 
 builder.Services.AddScoped<IJogoRepositorio, JogoRepositorio>();
 builder.Services.AddScoped<IJogoServico, JogoServico>();
