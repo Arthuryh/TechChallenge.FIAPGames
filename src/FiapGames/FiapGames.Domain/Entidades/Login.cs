@@ -18,15 +18,18 @@ namespace FiapGames.Domain.Entidades
         public string PasswordHash { get; set; }
         public DateTime DataCriacao { get; set; }
         public bool Ativo { get; set; }
+        [Required]
+        public TipoUsuario TipoUsuario { get; set; }
         public virtual Conta Conta { get; private set; }
         protected Login() { }
-        public Login(string nome, string email, string passwordHash)
+        public Login(string nome, string email, string passwordHash, int tipoUsuario)
         {
             Nome = nome;
             Email = email;
             PasswordHash = passwordHash;
             DataCriacao = DateTime.UtcNow;
             Ativo = true;
+            TipoUsuario = (TipoUsuario)tipoUsuario;
 
             Conta = new Conta(0m);
         }

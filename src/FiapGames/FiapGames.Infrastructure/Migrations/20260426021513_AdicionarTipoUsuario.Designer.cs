@@ -4,6 +4,7 @@ using FiapGames.Infrastructure.Contextos;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FiapGames.Infrastructure.Migrations
 {
     [DbContext(typeof(FIAPGamesContext))]
-    partial class FIAPGamesContextModelSnapshot : ModelSnapshot
+    [Migration("20260426021513_AdicionarTipoUsuario")]
+    partial class AdicionarTipoUsuario
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,7 +47,7 @@ namespace FiapGames.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Compras", (string)null);
+                    b.ToTable("Compras");
                 });
 
             modelBuilder.Entity("FiapGames.Domain.Entidades.CompraJogo", b =>
@@ -60,7 +63,7 @@ namespace FiapGames.Infrastructure.Migrations
 
                     b.HasKey("CompraId", "JogoId");
 
-                    b.ToTable("CompraJogos", (string)null);
+                    b.ToTable("CompraJogos");
                 });
 
             modelBuilder.Entity("FiapGames.Domain.Entidades.Conta", b =>
@@ -77,9 +80,6 @@ namespace FiapGames.Infrastructure.Migrations
                     b.Property<int>("IdLogin")
                         .HasColumnType("int");
 
-                    b.Property<int>("IdTipoConta")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("Saldo")
                         .HasColumnType("decimal(10,2)");
 
@@ -88,7 +88,7 @@ namespace FiapGames.Infrastructure.Migrations
                     b.HasIndex("IdLogin")
                         .IsUnique();
 
-                    b.ToTable("Contas", (string)null);
+                    b.ToTable("Contas");
                 });
 
             modelBuilder.Entity("FiapGames.Domain.Entidades.Jogo", b =>
@@ -121,50 +121,7 @@ namespace FiapGames.Infrastructure.Migrations
 
                     b.HasIndex("PromocaoId");
 
-                    b.ToTable("Jogos", (string)null);
-                });
-
-            modelBuilder.Entity("FiapGames.Domain.Entidades.LogError", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    MySqlPropertyBuilderExtensions.UseMySqlIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("datetime(6)");
-
-                    b.Property<string>("Exception")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Mensagem")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Request")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Response")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("TraceId")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("Url")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Logs");
+                    b.ToTable("Jogos");
                 });
 
             modelBuilder.Entity("FiapGames.Domain.Entidades.Login", b =>
@@ -204,7 +161,7 @@ namespace FiapGames.Infrastructure.Migrations
                     b.HasIndex("Email")
                         .IsUnique();
 
-                    b.ToTable("Logins", (string)null);
+                    b.ToTable("Logins");
                 });
 
             modelBuilder.Entity("FiapGames.Domain.Entidades.Promocao", b =>
@@ -233,7 +190,7 @@ namespace FiapGames.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Promocoes", (string)null);
+                    b.ToTable("Promocoes");
                 });
 
             modelBuilder.Entity("FiapGames.Domain.Entidades.CompraJogo", b =>
