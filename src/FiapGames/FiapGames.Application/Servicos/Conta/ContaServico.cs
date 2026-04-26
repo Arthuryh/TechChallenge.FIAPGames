@@ -23,6 +23,7 @@ namespace FiapGames.Application.Servicos.Conta
 
         public async Task<ObterSaldoDto> AdicionarSaldo(int id, AdicionarSaldoDto adicionarSaldo)
         {
+            //Refatorar para usar o método da Entidade CONTA
             await _repositorio.AdicionarSaldo(id, adicionarSaldo.Valor);
 
             return new ObterSaldoDto(adicionarSaldo.Valor);
@@ -30,6 +31,7 @@ namespace FiapGames.Application.Servicos.Conta
 
         public async Task<ObterSaldoDto> DebitarSaldo(int id, DebitarSaldoDto debitarSaldo)
         {
+            //Refatorar para usar o método da Entidade CONTA
             var saldo = await _repositorio.ObterSaldo(id);
             if (saldo < debitarSaldo.Valor) throw new Exception("Saldo insuficiente.");
             await _repositorio.DebitarSaldo(id, debitarSaldo.Valor);
