@@ -15,6 +15,16 @@
 
         public Jogo(string nome, decimal preco, string descricao)
         {
+            if(string.IsNullOrEmpty(nome))
+                throw new ArgumentException("Nome do jogo é obrigatório");
+
+            if (string.IsNullOrEmpty(descricao))
+                throw new ArgumentException("Descricao do jogo é obrigatório");
+
+            if (preco <= 0)
+                throw new ArgumentException("Preço precisa ser maior que 0.00");
+
+
             Nome = nome;
             Preco = preco;
             Descricao = descricao;
