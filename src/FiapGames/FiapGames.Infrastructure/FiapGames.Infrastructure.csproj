@@ -17,4 +17,10 @@
     <ProjectReference Include="..\FiapGames.Domain\FiapGames.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Repositorios\LogsRepo\LogRepositorio.cs">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
 </Project>
