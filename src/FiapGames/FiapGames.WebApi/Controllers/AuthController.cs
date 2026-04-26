@@ -27,8 +27,8 @@ namespace FiapGames.WebApi.Controllers
             return Ok("Só admin");
         }
 
-        [HttpGet("Solo")]
-        public IActionResult Solo()
+        [HttpGet("NoAuth")]
+        public IActionResult NoAuth()
         {
             return Ok("Sem auth");
         }
