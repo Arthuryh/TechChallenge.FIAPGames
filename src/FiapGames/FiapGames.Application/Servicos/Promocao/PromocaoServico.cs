@@ -1,9 +1,9 @@
 ﻿using FiapGames.Application.DTOs.Promocao;
-using FiapGames.Application.Interfaces;
+using FiapGames.Application.Interfaces.Promocao;
 using FiapGames.Domain.Entidades;
-using FiapGames.Infrastructure.Interfaces;
+using FiapGames.Infrastructure.Interfaces.Promocao;
 
-namespace FiapGames.Application.Servicos
+namespace FiapGames.Application.Servicos.Promocao
 {
     public class PromocaoServico : IPromocaoServico
     {

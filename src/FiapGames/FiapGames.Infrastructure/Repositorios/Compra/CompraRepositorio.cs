@@ -1,8 +1,8 @@
 ﻿using FiapGames.Domain.Entidades;
 using FiapGames.Infrastructure.Contextos;
-using FiapGames.Infrastructure.Interfaces;
+using FiapGames.Infrastructure.Interfaces.Compra;
 
-namespace FiapGames.Infrastructure.Repositorios
+namespace FiapGames.Infrastructure.Repositorios.Compra
 {
     public class CompraRepositorio : ICompraRepositorio
     {

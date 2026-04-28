@@ -1,9 +1,9 @@
 ﻿using FiapGames.Domain.Entidades;
 using FiapGames.Infrastructure.Contextos;
-using FiapGames.Infrastructure.Interfaces;
+using FiapGames.Infrastructure.Interfaces.Login;
 using Microsoft.EntityFrameworkCore;
 
-namespace FiapGames.Infrastructure.Repositorios
+namespace FiapGames.Infrastructure.Repositorios.Login
 {
     public class LoginRepositorio : ILoginRepositorio
     {

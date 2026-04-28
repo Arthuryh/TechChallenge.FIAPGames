@@ -1,6 +1,6 @@
 ﻿using FiapGames.Domain.Entidades;
 
-namespace FiapGames.Infrastructure.Interfaces
+namespace FiapGames.Infrastructure.Interfaces.Jogo
 {
     public interface IJogoRepositorio
     {

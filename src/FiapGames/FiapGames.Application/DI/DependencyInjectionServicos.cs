@@ -1,8 +1,11 @@
-﻿using FiapGames.Application.Interfaces;
-using FiapGames.Application.Interfaces.Compra;
+﻿using FiapGames.Application.Interfaces.Compra;
 using FiapGames.Application.Interfaces.Jogo;
 using FiapGames.Application.Interfaces.Login;
-using FiapGames.Application.Servicos;
+using FiapGames.Application.Interfaces.Promocao;
+using FiapGames.Application.Servicos.Compra;
+using FiapGames.Application.Servicos.Jogo;
+using FiapGames.Application.Servicos.Login;
+using FiapGames.Application.Servicos.Promocao;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FiapGames.Application.DI

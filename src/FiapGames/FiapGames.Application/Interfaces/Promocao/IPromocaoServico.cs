@@ -1,4 +1,4 @@
-﻿namespace FiapGames.Application.Interfaces
+﻿namespace FiapGames.Application.Interfaces.Promocao
 {
     public interface IPromocaoServico
     {

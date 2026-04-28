@@ -1,9 +1,10 @@
 ﻿using FiapGames.Application.DTOs.Compra;
 using FiapGames.Application.Interfaces.Compra;
 using FiapGames.Domain.Entidades;
-using FiapGames.Infrastructure.Interfaces;     
+using FiapGames.Infrastructure.Interfaces.Compra;
+using FiapGames.Infrastructure.Interfaces.Jogo;
 
-namespace FiapGames.Application.Servicos
+namespace FiapGames.Application.Servicos.Compra
 {
     public class CompraServico : ICompraServico
     {

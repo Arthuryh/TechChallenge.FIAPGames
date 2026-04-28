@@ -1,8 +1,8 @@
 ﻿using FiapGames.Domain.Entidades;
 using FiapGames.Infrastructure.Contextos;
-using FiapGames.Infrastructure.Interfaces.Log;
+using FiapGames.Infrastructure.Interfaces.LogRepo;
 
-namespace FiapGames.Infrastructure.Repositorios.Logs
+namespace FiapGames.Infrastructure.Repositorios.LogsRepo
 {
     public class LogRepositorio : ILogRepositorio
     {

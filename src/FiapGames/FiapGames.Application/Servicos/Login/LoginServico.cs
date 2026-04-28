@@ -1,9 +1,9 @@
 ﻿using FiapGames.Application.DTOs.Login;
 using FiapGames.Application.Interfaces.Login;
-using FiapGames.Infrastructure.Interfaces;
 using FiapGames.Domain.Entidades;
+using FiapGames.Infrastructure.Interfaces.Login;
 
-namespace FiapGames.Application.Servicos
+namespace FiapGames.Application.Servicos.Login
 {
     public class LoginServico : ILoginServico
     {
@@ -16,7 +16,7 @@ namespace FiapGames.Application.Servicos
         public async Task<CriarLoginDTO> CriarLogin(CriarLoginDTO loginDTO)
         {
             // 1. DE PARA (Mapeamento): O serviço recebe o DTO e transforma na Entidade
-            var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash, (int)loginDTO.TipoUsuario);
+            var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash, loginDTO.TipoUsuario);
 
             // 2. Chama o Repositório para salvar a Entidade no banco
             await _repositorio.AdicionarLogin(novoLogin);
