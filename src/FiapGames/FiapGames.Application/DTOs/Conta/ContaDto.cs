@@ -1,7 +1,8 @@
 ﻿namespace FiapGames.Application.DTOs.Conta
 {
-    public record DebitarSaldoDto
+    public record ContaDto
     (
+        int IdConta,
         decimal Valor
     );
 }

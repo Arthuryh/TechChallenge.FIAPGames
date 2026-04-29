@@ -1,8 +1,8 @@
 ﻿using FiapGames.Application.DTOs.Conta;
 using FiapGames.Application.Interfaces.Conta;
-using FiapGames.Infrastructure.Interfaces.Conta;
+using FiapGames.Infrastructure.Interfaces;
 
-namespace FiapGames.Application.Servicos.Conta
+namespace FiapGames.Application.Servicos
 {
     public class ContaServico : IContaServico
     {
@@ -12,31 +12,34 @@ namespace FiapGames.Application.Servicos.Conta
             _repositorio = repositorio;
         }
 
-        public async Task<ObterSaldoDto> ObterSaldo(int idConta)
+        public async Task<ContaDto> ObterSaldo(int idConta)
         {
-            var saldo = await _repositorio.ObterSaldo(idConta);
+            var conta = await _repositorio.ObterContaPorId(idConta);
 
-            if (saldo < 0) throw new Exception("Conta não encontrada.");
+            if (conta != null) return new ContaDto(conta.IdConta, conta.Saldo);
 
-            return new ObterSaldoDto(saldo);
+            throw new ArgumentException("Conta não encontrada.");
         }
 
-        public async Task<ObterSaldoDto> AdicionarSaldo(int id, AdicionarSaldoDto adicionarSaldo)
+        public async Task<ContaDto> AdicionarSaldo(ContaDto contaDto, decimal valor)
         {
-            //Refatorar para usar o método da Entidade CONTA
-            await _repositorio.AdicionarSaldo(id, adicionarSaldo.Valor);
+            var conta = await _repositorio.ObterContaPorId(contaDto.IdConta);
 
-            return new ObterSaldoDto(adicionarSaldo.Valor);
-        }
-
-        public async Task<ObterSaldoDto> DebitarSaldo(int id, DebitarSaldoDto debitarSaldo)
-        {
-            //Refatorar para usar o método da Entidade CONTA
-            var saldo = await _repositorio.ObterSaldo(id);
-            if (saldo < debitarSaldo.Valor) throw new Exception("Saldo insuficiente.");
-            await _repositorio.DebitarSaldo(id, debitarSaldo.Valor);
+            if (conta == null) throw new ArgumentException("Conta não encontrada.");
             
-            return new ObterSaldoDto(debitarSaldo.Valor);
+            conta.Adicionar(valor);
+            await _repositorio.AdicionarSaldo(conta, valor);
+            return new ContaDto(conta.IdConta, conta.Saldo);
+        }
+
+        public async Task<ContaDto> DebitarSaldo(ContaDto contaDto, decimal valor)
+        {
+            var conta = await _repositorio.ObterContaPorId(contaDto.IdConta);
+            if (conta == null) throw new ArgumentException("Conta não encontrada.");
+            
+            conta.Debitar(valor);
+            await _repositorio.DebitarSaldo(conta, valor);
+            return new ContaDto(conta.IdConta, conta.Saldo);
         }
     }
 }

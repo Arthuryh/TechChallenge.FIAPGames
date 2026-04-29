@@ -18,10 +18,8 @@ namespace FiapGames.Infrastructure.Contextos
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            //Tabela Login
             builder.Entity<Login>(entity =>
             {
-                //Propriedades Login
                 entity.HasKey(e => e.IdLogin);
                 entity.Property(e => e.Nome)
                     .IsRequired()
@@ -39,14 +37,12 @@ namespace FiapGames.Infrastructure.Contextos
                 entity.Property(e => e.Ativo)
                     .IsRequired();
 
-                //Relacionamento 1:1 com Conta
                 entity.HasOne(e => e.Conta)
                     .WithOne(c => c.Login)
                     .HasForeignKey<Conta>(c => c.IdLogin)
                     .OnDelete(DeleteBehavior.Cascade);
             });
 
-            //Tabela Conta
             builder.Entity<Conta>(entity =>
             {
                 entity.HasKey(e => e.IdConta);

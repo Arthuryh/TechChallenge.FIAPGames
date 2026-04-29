@@ -1,6 +1,5 @@
 ﻿using FiapGames.Application.DTOs.Promocao;
 using FiapGames.Application.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FiapGames.WebApi.Controllers.Promocao

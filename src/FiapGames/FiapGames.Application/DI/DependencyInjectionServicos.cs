@@ -1,5 +1,6 @@
 ﻿using FiapGames.Application.Interfaces;
 using FiapGames.Application.Interfaces.Compra;
+using FiapGames.Application.Interfaces.Conta;
 using FiapGames.Application.Interfaces.Jogo;
 using FiapGames.Application.Interfaces.Login;
 using FiapGames.Application.Servicos;
@@ -15,6 +16,7 @@ namespace FiapGames.Application.DI
             services.AddScoped<ILoginServico, LoginServico>();
             services.AddScoped<ICompraServico, CompraServico>();
             services.AddScoped<IJogoServico, JogoServico>();
+            services.AddScoped<IContaServico, ContaServico>();
 
             return services;
         }
