@@ -21,24 +21,24 @@ namespace FiapGames.Application.Servicos
             throw new ArgumentException("Conta não encontrada.");
         }
 
-        public async Task<ContaDto> AdicionarSaldo(ContaDto contaDto, decimal valor)
+        public async Task<ContaDto> AdicionarSaldo(ContaDto contaDto)
         {
             var conta = await _repositorio.ObterContaPorId(contaDto.IdConta);
 
             if (conta == null) throw new ArgumentException("Conta não encontrada.");
             
-            conta.Adicionar(valor);
-            await _repositorio.AdicionarSaldo(conta, valor);
+            conta.Adicionar(conta.IdConta);
+            await _repositorio.AdicionarSaldo(conta, contaDto.Valor);
             return new ContaDto(conta.IdConta, conta.Saldo);
         }
 
-        public async Task<ContaDto> DebitarSaldo(ContaDto contaDto, decimal valor)
+        public async Task<ContaDto> DebitarSaldo(ContaDto contaDto)
         {
             var conta = await _repositorio.ObterContaPorId(contaDto.IdConta);
             if (conta == null) throw new ArgumentException("Conta não encontrada.");
             
-            conta.Debitar(valor);
-            await _repositorio.DebitarSaldo(conta, valor);
+            conta.Debitar(contaDto.Valor);
+            await _repositorio.DebitarSaldo(conta, contaDto.Valor);
             return new ContaDto(conta.IdConta, conta.Saldo);
         }
     }

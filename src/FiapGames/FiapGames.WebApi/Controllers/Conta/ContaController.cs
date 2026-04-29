@@ -25,14 +25,14 @@ namespace FiapGames.WebApi.Controllers.Conta
         [HttpPost("depositar")]
         public async Task<IActionResult> AdicionarSaldo(ContaDto dto)
         {
-            await _contaServico.AdicionarSaldo(dto, dto.Valor);
+            await _contaServico.AdicionarSaldo(dto);
             return Ok();
         }
 
         [HttpPost("debitar")]
         public async Task<IActionResult> DebitarSaldo(ContaDto dto)
         {
-            await _contaServico.DebitarSaldo(dto, dto.Valor);
+            await _contaServico.DebitarSaldo(dto);
             return Ok();
         }
     }
