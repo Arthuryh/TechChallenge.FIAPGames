@@ -15,15 +15,18 @@ namespace FiapGames.Application.Servicos
 
         public async Task<CriarLoginDTO> CriarLogin(CriarLoginDTO loginDTO)
         {
-            // 1. DE PARA (Mapeamento): O serviço recebe o DTO e transforma na Entidade
-            var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash, (int)loginDTO.TipoUsuario);
+            if (string.IsNullOrWhiteSpace(loginDTO.PasswordHash)) 
+                throw new ArgumentException("A senha não pode estar vazia.");
 
-            // 2. Chama o Repositório para salvar a Entidade no banco
+            string senhaHash = BCrypt.Net.BCrypt.HashPassword(loginDTO.PasswordHash);
+
+            var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, senhaHash, (int)loginDTO.TipoUsuario);
+            
             await _repositorio.AdicionarLogin(novoLogin);
-
-            // 3. Retorna o DTO de volta para quem chamou (o Controller da WebApi)
+            
             return loginDTO;
         }
+
         public async Task<LerLoginDTO?> ObterLoginPorId(int id)
         {
             var login = await _repositorio.ObterLoginPorId(id);
@@ -84,7 +87,7 @@ namespace FiapGames.Application.Servicos
         {
             var login = await _repositorio.ObterLoginPorId(loginDTO.IdLogin);
 
-            if (login == null) throw new Exception("Login não encontrado");
+            if (login == null) throw new ArgumentException("Login não encontrado");
 
             login.AtualizarLogin(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash);
 
@@ -98,6 +101,30 @@ namespace FiapGames.Application.Servicos
             if (login == null) throw new Exception("Login não encontrado");
 
             await _repositorio.DesativarLogin(id);
+        }
+
+        public async Task<LerLoginDTO> ValidarCredenciaisAsync(string email, string password)
+        {
+            var login = await _repositorio.ObterLoginPorEmail(email);
+            if (login == null)
+            {
+                throw new ArgumentException("Credenciais inválidas");
+            }
+            bool senhaValida = BCrypt.Net.BCrypt.Verify(password, login.PasswordHash);
+            if (!senhaValida)
+            {
+                throw new ArgumentException("Credenciais inválidas");
+            }
+
+            return new LerLoginDTO
+            (
+                login.IdLogin,
+                login.Nome,
+                login.Email,
+                login.PasswordHash = "",
+                login.Ativo ? "Sim" : "Não",
+                (int)login.TipoUsuario
+            );
         }
     }
 }

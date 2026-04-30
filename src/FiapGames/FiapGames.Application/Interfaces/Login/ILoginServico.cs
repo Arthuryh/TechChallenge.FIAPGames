@@ -10,5 +10,6 @@ namespace FiapGames.Application.Interfaces.Login
         Task<IEnumerable<LerLoginDTO>> ObterLogins();
         Task AtualizarLogin(AtualizarLoginDTO loginDTO);
         Task DeletarLogin(int id);
+        Task<LerLoginDTO>ValidarCredenciaisAsync(string email, string password);
     }
 }
