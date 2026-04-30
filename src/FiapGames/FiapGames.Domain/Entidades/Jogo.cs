@@ -7,12 +7,10 @@
         public decimal Preco { get; private set; }
         public string Descricao { get; private set; }
         public DateTime DataLancamento { get; private set; }
-
         public int? PromocaoId { get; private set; }
         public virtual Promocao? Promocao { get; private set; }
 
         public Jogo() { }
-
         public Jogo(string nome, decimal preco, string descricao)
         {
             if(string.IsNullOrEmpty(nome))
@@ -23,7 +21,6 @@
 
             if (preco <= 0)
                 throw new ArgumentException("Preço precisa ser maior que 0.00");
-
 
             Nome = nome;
             Preco = preco;

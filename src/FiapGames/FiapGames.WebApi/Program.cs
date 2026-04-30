@@ -1,13 +1,13 @@
-using FiapGames.Infrastructure.Contextos;
-using FiapGames.Infrastructure.Middlewares;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Net;
-using FiapGames.Infrastructure.DI;
-using FiapGames.Application.DI;
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using FiapGames.Application.DI;
+using FiapGames.Infrastructure.Contextos;
+using FiapGames.Infrastructure.DI;
+using FiapGames.Infrastructure.Middlewares;
+using System.Net;
+using System.Text;
 
 internal class Program
 {

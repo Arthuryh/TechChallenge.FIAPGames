@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace FiapGames.Domain.Entidades
+﻿namespace FiapGames.Domain.Entidades
 {
     public class Login
     {
