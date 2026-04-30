@@ -1,9 +1,12 @@
-﻿namespace FiapGames.Infrastructure.Interfaces.Conta
+﻿using FiapGames.Domain.Entidades;
+
+namespace FiapGames.Infrastructure.Interfaces
 {
     public interface IContaRepositorio
     {
+        Task<Conta?> ObterContaPorId(int id);
         Task<decimal> ObterSaldo(int idConta);
-        Task AdicionarSaldo(int idConta, decimal valor);
-        Task DebitarSaldo(int idConta, decimal valor);
+        Task AdicionarSaldo(Conta conta, decimal valor);
+        Task DebitarSaldo(Conta conta, decimal valor);
     }
 }

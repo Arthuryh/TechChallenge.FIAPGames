@@ -29,7 +29,7 @@ internal class Program
         })
         .AddJwtBearer(options =>
         {
-            options.RequireHttpsMetadata = false; // true em prod
+            options.RequireHttpsMetadata = false;
             options.SaveToken = true;
             options.TokenValidationParameters = new TokenValidationParameters
             {

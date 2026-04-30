@@ -15,22 +15,18 @@ namespace FiapGames.Application.Servicos
 
         public async Task<CriarLoginDTO> CriarLogin(CriarLoginDTO loginDTO)
         {
-            // 1. DE PARA (Mapeamento): O serviço recebe o DTO e transforma na Entidade
+            
             var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash, (int)loginDTO.TipoUsuario);
 
-            // 2. Chama o Repositório para salvar a Entidade no banco
             await _repositorio.AdicionarLogin(novoLogin);
-
-            // 3. Retorna o DTO de volta para quem chamou (o Controller da WebApi)
+            
             return loginDTO;
         }
+
         public async Task<LerLoginDTO?> ObterLoginPorId(int id)
         {
             var login = await _repositorio.ObterLoginPorId(id);
-
-            if (login == null) return null;
-
-            // Mapear a Entidade de volta para o DTO
+            if (login == null) throw new ArgumentException("Login não encontrado", nameof(id));
 
             return new LerLoginDTO
             (
@@ -43,14 +39,11 @@ namespace FiapGames.Application.Servicos
             );
         }
 
-        public async Task<LerLoginDTO> ObterLoginPorEmail(string email) // revisar implementação
+        public async Task<LerLoginDTO> ObterLoginPorEmail(string email)
         {
-            //validacao de email
             var login = await _repositorio.ObterLoginPorEmail(email);
+            if (login == null) throw new ArgumentException("Login não encontrado");
 
-            if (login == null) throw new Exception("Login não encontrado");
-
-            // Mapear a Entidade de volta para o DTO
             return new LerLoginDTO
             (
                 login.IdLogin,
@@ -84,7 +77,7 @@ namespace FiapGames.Application.Servicos
         {
             var login = await _repositorio.ObterLoginPorId(loginDTO.IdLogin);
 
-            if (login == null) throw new Exception("Login não encontrado");
+            if (login == null) throw new ArgumentException("Login não encontrado");
 
             login.AtualizarLogin(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash);
 
@@ -95,9 +88,11 @@ namespace FiapGames.Application.Servicos
         {
             var login = await _repositorio.ObterLoginPorId(id);
 
-            if (login == null) throw new Exception("Login não encontrado");
+            if (login == null) throw new ArgumentException("Login não encontrado");
 
-            await _repositorio.DesativarLogin(id);
+            login.DesativarLogin();
+
+            await _repositorio.AtualizarLogin(login);
         }
     }
 }

@@ -22,16 +22,9 @@ namespace FiapGames.Infrastructure.Repositorios
 
         public async Task AtualizarLogin(Login login)
         {
+
             _context.Logins.Update(login);
             await _context.SaveChangesAsync();
-        }
-
-        public async Task DesativarLogin(int id)
-        {
-            await _context.Logins
-                .Where(l => l.IdLogin == id)
-                .ExecuteUpdateAsync(l => l
-                .SetProperty(p => p.Ativo, false));
         }
 
         public async Task<Login?> ObterLoginPorEmail(string email)
