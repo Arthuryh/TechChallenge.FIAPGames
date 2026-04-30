@@ -4,8 +4,8 @@ namespace FiapGames.Application.Interfaces.Conta
 {
     public interface IContaServico
     {
-        Task<ObterSaldoDto> ObterSaldo(int idConta);
-        Task<ObterSaldoDto> AdicionarSaldo(int id, AdicionarSaldoDto adicionarSaldo);
-        Task<ObterSaldoDto> DebitarSaldo(int id, DebitarSaldoDto debitarSaldo);
+        Task<ContaDto> ObterSaldo(int idConta);
+        Task<ContaDto> AdicionarSaldo(ContaDto conta);
+        Task<ContaDto> DebitarSaldo(ContaDto conta);
     }
 }

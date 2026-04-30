@@ -2,8 +2,6 @@
 using FiapGames.Application.Interfaces.Login;
 using Microsoft.AspNetCore.Mvc;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace FiapGames.WebApi.Controllers.Login
 {
     [Route("api/[controller]")]
@@ -28,10 +26,6 @@ namespace FiapGames.WebApi.Controllers.Login
         public async Task<IActionResult> ObterPorId(int id)
         {
             var usuario = await _loginServico.ObterLoginPorId(id);
-            if (usuario == null)
-            {
-                return BadRequest();
-            }
             return Ok(usuario);
         }
 
@@ -39,13 +33,8 @@ namespace FiapGames.WebApi.Controllers.Login
         public async Task<IActionResult> ObterPorEmail(string email)
         {
             var usuario = await _loginServico.ObterLoginPorEmail(email);
-            if (usuario == null)
-            {
-                return BadRequest();
-            }
             return Ok(usuario);
         }
-
 
         [HttpGet]
         public async Task<IActionResult> ObterTodosLogins()

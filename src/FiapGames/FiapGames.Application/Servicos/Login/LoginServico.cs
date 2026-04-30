@@ -30,10 +30,7 @@ namespace FiapGames.Application.Servicos
         public async Task<LerLoginDTO?> ObterLoginPorId(int id)
         {
             var login = await _repositorio.ObterLoginPorId(id);
-
-            if (login == null) return null;
-
-            // Mapear a Entidade de volta para o DTO
+            if (login == null) throw new ArgumentException("Login não encontrado", nameof(id));
 
             return new LerLoginDTO
             (
@@ -46,14 +43,11 @@ namespace FiapGames.Application.Servicos
             );
         }
 
-        public async Task<LerLoginDTO> ObterLoginPorEmail(string email) // revisar implementação
+        public async Task<LerLoginDTO> ObterLoginPorEmail(string email)
         {
-            //validacao de email
             var login = await _repositorio.ObterLoginPorEmail(email);
+            if (login == null) throw new ArgumentException("Login não encontrado");
 
-            if (login == null) throw new Exception("Login não encontrado");
-
-            // Mapear a Entidade de volta para o DTO
             return new LerLoginDTO
             (
                 login.IdLogin,
@@ -98,9 +92,11 @@ namespace FiapGames.Application.Servicos
         {
             var login = await _repositorio.ObterLoginPorId(id);
 
-            if (login == null) throw new Exception("Login não encontrado");
+            if (login == null) throw new ArgumentException("Login não encontrado");
 
-            await _repositorio.DesativarLogin(id);
+            login.DesativarLogin();
+
+            await _repositorio.AtualizarLogin(login);
         }
 
         public async Task<LerLoginDTO> ValidarCredenciaisAsync(string email, string password)
