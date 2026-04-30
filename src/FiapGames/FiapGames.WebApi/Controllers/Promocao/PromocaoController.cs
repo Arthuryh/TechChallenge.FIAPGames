@@ -1,11 +1,13 @@
 ﻿using FiapGames.Application.DTOs.Promocao;
 using FiapGames.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FiapGames.WebApi.Controllers.Promocao
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PromocaoController : ControllerBase
     {
         private readonly IPromocaoServico _service;

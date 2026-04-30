@@ -21,9 +21,9 @@ namespace FiapGames.WebApi.Controllers.Auth
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LerLoginDTO loginDTO)
+        public async Task<IActionResult> Login(string email, string senha)
         {
-            var usuario = await _loginServico.ValidarCredenciaisAsync(loginDTO.Email, loginDTO.PasswordHash);
+            var usuario = await _loginServico.ValidarCredenciaisAsync(email, senha);
             if (usuario == null)
             {
                 return Unauthorized("Credenciais inválidas");
