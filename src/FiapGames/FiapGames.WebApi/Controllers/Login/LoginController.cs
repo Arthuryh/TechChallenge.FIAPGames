@@ -1,5 +1,5 @@
 ﻿using FiapGames.Application.DTOs.Login;
-using FiapGames.Application.Interfaces.Login;
+using FiapGames.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FiapGames.WebApi.Controllers.Login

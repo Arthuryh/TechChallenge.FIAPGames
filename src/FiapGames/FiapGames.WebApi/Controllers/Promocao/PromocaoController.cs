@@ -1,8 +1,8 @@
 ﻿using FiapGames.Application.DTOs.Promocao;
-using FiapGames.Application.Interfaces;
+using FiapGames.Application.Interfaces.Promocao;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FiapGames.WebApi.Controllers.Promocao
+namespace FiapGames.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

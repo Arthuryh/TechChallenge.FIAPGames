@@ -1,9 +1,9 @@
 ﻿using FiapGames.Domain.Entidades;
 using FiapGames.Infrastructure.Contextos;
-using FiapGames.Infrastructure.Interfaces.Promocao;
+using FiapGames.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace FiapGames.Infrastructure.Repositorios.Promocao
+namespace FiapGames.Infrastructure.Repositorios
 {
     public class PromocaoRepositorio : IPromocaoRepositorio
     {

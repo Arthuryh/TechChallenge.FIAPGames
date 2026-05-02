@@ -14,10 +14,10 @@
         public Promocao(string nome, int taxa, DateTime inicio, DateTime fim)
         {
             if (taxa <= 0 || taxa > 100)
-                throw new Exception("Taxa inválida");
+                throw new ArgumentException("Taxa inválida");
 
             if (fim <= inicio)
-                throw new Exception("Período inválido");
+                throw new ArgumentException("Período inválido");
 
             Nome = nome;
             TaxaDesconto = taxa;

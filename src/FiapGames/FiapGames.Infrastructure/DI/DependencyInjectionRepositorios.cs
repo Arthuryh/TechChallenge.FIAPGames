@@ -1,13 +1,7 @@
-﻿using FiapGames.Infrastructure.Interfaces.Compra;
-using FiapGames.Infrastructure.Interfaces.Jogo;
-using FiapGames.Infrastructure.Interfaces.Login;
+﻿using FiapGames.Infrastructure.Interfaces;
 using FiapGames.Infrastructure.Interfaces.LogRepo;
-using FiapGames.Infrastructure.Interfaces.Promocao;
-using FiapGames.Infrastructure.Repositorios.Compra;
-using FiapGames.Infrastructure.Repositorios.Jogo;
-using FiapGames.Infrastructure.Repositorios.Login;
+using FiapGames.Infrastructure.Repositorios;
 using FiapGames.Infrastructure.Repositorios.LogsRepo;
-using FiapGames.Infrastructure.Repositorios.Promocao;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FiapGames.Infrastructure.DI

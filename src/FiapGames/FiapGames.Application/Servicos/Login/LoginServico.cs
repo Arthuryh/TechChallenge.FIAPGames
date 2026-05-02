@@ -1,9 +1,9 @@
 ﻿using FiapGames.Application.DTOs.Login;
-using FiapGames.Application.Interfaces.Login;
+using FiapGames.Application.Interfaces;
 using FiapGames.Domain.Entidades;
-using FiapGames.Infrastructure.Interfaces.Login;
+using FiapGames.Infrastructure.Interfaces;
 
-namespace FiapGames.Application.Servicos.Login
+namespace FiapGames.Application.Servicos
 {
     public class LoginServico : ILoginServico
     {
@@ -15,11 +15,11 @@ namespace FiapGames.Application.Servicos.Login
 
         public async Task<CriarLoginDTO> CriarLogin(CriarLoginDTO loginDTO)
         {
-            
+
             var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash, (int)loginDTO.TipoUsuario);
 
             await _repositorio.AdicionarLogin(novoLogin);
-            
+
             return loginDTO;
         }
 

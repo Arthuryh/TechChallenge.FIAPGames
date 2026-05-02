@@ -1,7 +1,7 @@
 using Bogus;
 using FiapGames.Domain.Entidades;
 
-namespace FiapGames.Tests.Domain
+namespace FiapGames.UnitTests
 {
     public class JogoTests
     {
@@ -75,7 +75,7 @@ namespace FiapGames.Tests.Domain
 
             jogo.AplicarPromocao(promocao);
 
-            var precoEsperado = jogo.Preco - (jogo.Preco * 0.10m);
+            var precoEsperado = jogo.Preco - jogo.Preco * 0.10m;
 
             Assert.Equal(precoEsperado, jogo.ObterPrecoAtual());
         }
@@ -128,7 +128,7 @@ namespace FiapGames.Tests.Domain
 
             jogo.AplicarPromocao(promocao);
 
-            var precoEsperado = jogo.Preco - (jogo.Preco * 0.10m);
+            var precoEsperado = jogo.Preco - jogo.Preco * 0.10m;
 
             Assert.Equal(precoEsperado, jogo.ObterPrecoAtual());
         }
