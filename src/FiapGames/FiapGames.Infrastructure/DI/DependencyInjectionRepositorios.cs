@@ -21,6 +21,7 @@ namespace FiapGames.Infrastructure.DI
             services.AddScoped<ICompraRepositorio, CompraRepositorio>();
             services.AddScoped<IPromocaoRepositorio, PromocaoRepositorio>();
             services.AddScoped<ILogRepositorio, LogRepositorio>();
+            services.AddScoped<IContaRepositorio, ContaRepositorio>();
 
             return services;
         }
