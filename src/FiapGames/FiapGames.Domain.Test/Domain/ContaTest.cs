@@ -1,6 +1,6 @@
 ﻿using FiapGames.Domain.Entidades;
 
-namespace FiapGames.UnitTests
+namespace FiapGames.UnitTests.Domain
 {
     public class ContaTests
     {
