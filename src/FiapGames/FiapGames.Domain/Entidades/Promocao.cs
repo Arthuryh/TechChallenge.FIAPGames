@@ -8,7 +8,6 @@
         public DateTime DataInicio { get; private set; }
         public DateTime DataFim { get; private set; }
         public bool Ativo { get; private set; }
-
         public Promocao() { }
 
         public Promocao(string nome, int taxa, DateTime inicio, DateTime fim)

@@ -4,6 +4,7 @@ using FiapGames.Application.Interfaces.Conta;
 using FiapGames.Application.Interfaces.Jogo;
 using FiapGames.Application.Interfaces.Promocao;
 using FiapGames.Application.Servicos;
+using FiapGames.Application.Servicos.Auth;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FiapGames.Application.DI
@@ -17,6 +18,7 @@ namespace FiapGames.Application.DI
             services.AddScoped<ICompraServico, CompraServico>();
             services.AddScoped<IJogoServico, JogoServico>();
             services.AddScoped<IContaServico, ContaServico>();
+            services.AddScoped<ITokenServico, TokenServico>();
 
             return services;
         }

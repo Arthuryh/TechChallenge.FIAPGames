@@ -4,12 +4,9 @@
     {
         public int Id { get; private set; }
         public DateTime DataCompra { get; private set; }
-
         public decimal ValorTotalBruto { get; private set; }
         public decimal ValorTotalLiquido { get; private set; }
-
         public virtual List<CompraJogo> CompraJogos { get; private set; }
-
 
         public Compra()
         {

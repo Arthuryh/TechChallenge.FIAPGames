@@ -4,6 +4,6 @@ namespace FiapGames.Infrastructure.Interfaces.LogRepo
 {
     public interface ILogRepositorio
     {
-        Task SalvarLogErro(LogError log);
+        Task SalvarLogErro(LogMensagem log);
     }
 }
