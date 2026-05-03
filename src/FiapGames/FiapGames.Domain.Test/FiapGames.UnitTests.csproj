@@ -19,15 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FiapGames.Application\FiapGames.Application.csproj" />
     <ProjectReference Include="..\FiapGames.Domain\FiapGames.Domain.csproj" />
+    <ProjectReference Include="..\FiapGames.Infrastructure\FiapGames.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Using Include="Xunit" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Application.Test\" />
   </ItemGroup>
 
 </Project>
