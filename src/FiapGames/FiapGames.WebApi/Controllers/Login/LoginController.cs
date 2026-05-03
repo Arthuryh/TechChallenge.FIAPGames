@@ -1,6 +1,5 @@
 ﻿using FiapGames.Application.DTOs.Login;
 using FiapGames.Application.Interfaces;
-using FiapGames.Application.Interfaces.Login;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

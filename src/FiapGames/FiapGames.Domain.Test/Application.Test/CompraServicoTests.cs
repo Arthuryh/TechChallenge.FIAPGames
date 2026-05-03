@@ -3,6 +3,7 @@ using FiapGames.Application.Servicos;
 using FiapGames.Infrastructure.Interfaces;
 using FiapGames.Application.DTOs.Compra;
 using FiapGames.Domain.Entidades;
+using FiapGames.Application.Interfaces.Conta;
 
 namespace FiapGames.Tests.Application
 {
@@ -10,13 +11,15 @@ namespace FiapGames.Tests.Application
     {
         private readonly Mock<ICompraRepositorio> _repoMock;
         private readonly Mock<IJogoRepositorio> _jogoMock;
+        private readonly Mock<IContaServico> _contaSvcMock;
         private readonly CompraServico _service;
 
         public CompraServicoTests()
         {
             _repoMock = new Mock<ICompraRepositorio>();
             _jogoMock = new Mock<IJogoRepositorio>();
-            _service = new CompraServico(_repoMock.Object, _jogoMock.Object);
+            _contaSvcMock = new Mock<IContaServico>();
+            _service = new CompraServico(_repoMock.Object, _jogoMock.Object, _contaSvcMock.Object);
         }
 
         [Fact]
