@@ -14,7 +14,7 @@ namespace FiapGames.Infrastructure.Contextos
         public DbSet<Promocao> Promocoes { get; set; }
         public DbSet<Compra> Compras { get; set; }
         public DbSet<CompraJogo> CompraJogos { get; set; }
-        public DbSet<LogError> Logs { get; set; }
+        public DbSet<LogMensagem> Logs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

@@ -12,10 +12,19 @@ namespace FiapGames.Infrastructure.Repositorios.Logs
         {
             _context = context;
         }
-        public async Task SalvarLogErro(LogError log)
+        public async Task SalvarLogErro(LogMensagem log)
         {
-            await _context.Logs.AddAsync(log);
-            await _context.SaveChangesAsync();
+            try
+            {
+
+                await _context.Logs.AddAsync(log);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         }
     }
 }

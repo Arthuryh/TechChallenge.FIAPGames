@@ -1,5 +1,6 @@
 ﻿using FiapGames.Application.DTOs.Login;
 using FiapGames.Application.Interfaces.Login;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FiapGames.WebApi.Controllers.Login
@@ -22,6 +23,7 @@ namespace FiapGames.WebApi.Controllers.Login
             return Ok(novoLogin);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("{id:int}")]
         public async Task<IActionResult> ObterPorId(int id)
         {
@@ -29,6 +31,7 @@ namespace FiapGames.WebApi.Controllers.Login
             return Ok(usuario);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("email/{email}")]
         public async Task<IActionResult> ObterPorEmail(string email)
         {
@@ -36,6 +39,7 @@ namespace FiapGames.WebApi.Controllers.Login
             return Ok(usuario);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> ObterTodosLogins()
         {
@@ -43,6 +47,7 @@ namespace FiapGames.WebApi.Controllers.Login
             return Ok(usuarios);
         }
 
+        [Authorize]
         [HttpPut]
         public async Task<IActionResult> AtualizarLogin([FromBody] AtualizarLoginDTO loginDTO)
         {
@@ -50,6 +55,7 @@ namespace FiapGames.WebApi.Controllers.Login
             return Ok();
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> DeletarLogin(int id)
         {

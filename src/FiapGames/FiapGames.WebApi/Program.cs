@@ -1,13 +1,13 @@
-using FiapGames.Infrastructure.Contextos;
-using FiapGames.Infrastructure.Middlewares;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using System.Net;
-using FiapGames.Infrastructure.DI;
-using FiapGames.Application.DI;
-using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using FiapGames.Application.DI;
+using FiapGames.Infrastructure.Contextos;
+using FiapGames.Infrastructure.DI;
+using FiapGames.Infrastructure.Middlewares;
+using System.Net;
+using System.Text;
 
 internal class Program
 {
@@ -19,8 +19,9 @@ internal class Program
         builder.Services.AddApplicationServices();
 
         var connectionString = builder.Configuration.GetConnectionString("FIAPGamesConnection");
+        var jwtKey = builder.Configuration["Jwt:Key"];
+        var keyBytes = Encoding.ASCII.GetBytes(jwtKey);
 
-        var key = Encoding.ASCII.GetBytes("MINHA_CHAVE_SUPER_SECRETA_COM_32_BYTES!!");
 
         builder.Services.AddAuthentication(options =>
         {
@@ -29,16 +30,18 @@ internal class Program
         })
         .AddJwtBearer(options =>
         {
-            options.RequireHttpsMetadata = false;
+            options.RequireHttpsMetadata = false; // Em prod, mude para true
             options.SaveToken = true;
             options.TokenValidationParameters = new TokenValidationParameters
             {
-                ValidateIssuer = false,
-                ValidateAudience = false,
                 ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(key),
-
-                RoleClaimType = System.Security.Claims.ClaimTypes.Role
+                IssuerSigningKey = new SymmetricSecurityKey(keyBytes),
+                ValidateIssuer = true,
+                ValidIssuer = builder.Configuration["Jwt:Issuer"],
+                ValidateAudience = true,
+                ValidAudience = builder.Configuration["Jwt:Audience"],
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero // Remove o tempo de tolerância padrão do .NET
             };
         });
 

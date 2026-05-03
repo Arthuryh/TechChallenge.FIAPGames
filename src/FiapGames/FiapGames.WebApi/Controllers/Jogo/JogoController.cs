@@ -1,12 +1,14 @@
 ﻿using FiapGames.Application.DTOs.Jogo;
 using FiapGames.Application.DTOs.Promocao;
 using FiapGames.Application.Interfaces.Jogo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FiapGames.WebApi.Controllers.Jogo
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Roles = "Admin")]
     public class JogoController : ControllerBase
     {
         private readonly IJogoServico _service;

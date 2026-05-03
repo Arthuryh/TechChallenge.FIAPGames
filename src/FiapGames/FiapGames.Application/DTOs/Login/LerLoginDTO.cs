@@ -1,4 +1,6 @@
-﻿namespace FiapGames.Application.DTOs.Login
+﻿using FiapGames.Domain.Entidades;
+
+namespace FiapGames.Application.DTOs.Login
 {
     public record LerLoginDTO(
         int IdLogin,
@@ -6,6 +8,6 @@
         string Email,
         string PasswordHash,
         string Ativo,
-        int TipoUsuario
+        TipoUsuario TipoUsuario
         );
 }

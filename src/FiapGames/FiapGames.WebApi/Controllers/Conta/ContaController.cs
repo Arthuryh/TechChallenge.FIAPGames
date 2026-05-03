@@ -1,11 +1,13 @@
 ﻿using FiapGames.Application.DTOs.Conta;
 using FiapGames.Application.Interfaces.Conta;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FiapGames.WebApi.Controllers.Conta
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ContaController : ControllerBase
     {
         private readonly IContaServico _contaServico;
@@ -26,13 +28,6 @@ namespace FiapGames.WebApi.Controllers.Conta
         public async Task<IActionResult> AdicionarSaldo(ContaDto dto)
         {
             await _contaServico.AdicionarSaldo(dto);
-            return Ok();
-        }
-
-        [HttpPost("debitar")]
-        public async Task<IActionResult> DebitarSaldo(ContaDto dto)
-        {
-            await _contaServico.DebitarSaldo(dto);
             return Ok();
         }
     }

@@ -4,7 +4,6 @@
     {
         public int CompraId { get; private set; }
         public int JogoId { get; private set; }
-
         public decimal PrecoAplicado { get; private set; }
 
         private CompraJogo() { }
