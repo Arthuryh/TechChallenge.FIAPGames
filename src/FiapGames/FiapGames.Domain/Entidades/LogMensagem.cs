@@ -1,6 +1,6 @@
 ﻿namespace FiapGames.Domain.Entidades
 {
-    public class LogError
+    public class LogMensagem
     {
         public int Id { get; set; }
         public string Mensagem { get; set; }

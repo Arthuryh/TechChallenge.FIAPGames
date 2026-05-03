@@ -98,7 +98,6 @@ internal class Program
         var app = builder.Build();
 
         app.UseMiddleware<ExceptionMiddleware>();
-        app.UseMiddleware<RequestMiddleware>();
 
         if (app.Environment.IsDevelopment())
         {

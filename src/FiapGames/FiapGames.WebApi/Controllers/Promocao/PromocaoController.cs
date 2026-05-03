@@ -7,7 +7,7 @@ namespace FiapGames.WebApi.Controllers.Promocao
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class PromocaoController : ControllerBase
     {
         private readonly IPromocaoServico _service;

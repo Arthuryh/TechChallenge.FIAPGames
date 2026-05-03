@@ -15,6 +15,7 @@ namespace FiapGames.Application.Servicos
 
         public async Task<CriarLoginDTO> CriarLogin(CriarLoginDTO loginDTO)
         {
+            //mover pra entidade
             if (string.IsNullOrWhiteSpace(loginDTO.PasswordHash)) 
                 throw new ArgumentException("A senha não pode estar vazia.");
 
@@ -39,7 +40,7 @@ namespace FiapGames.Application.Servicos
                 login.Email,
                 login.PasswordHash = "",
                 login.Ativo ? "Sim" : "Não",
-                (int)login.TipoUsuario
+                login.TipoUsuario
             );
         }
 
@@ -55,7 +56,7 @@ namespace FiapGames.Application.Servicos
                 login.Email,
                 login.PasswordHash = "",
                 login.Ativo ? "Sim" : "Não",
-                (int)login.TipoUsuario
+                login.TipoUsuario
             );
         }
 
@@ -71,7 +72,7 @@ namespace FiapGames.Application.Servicos
                     login.Email,
                     login.PasswordHash = "",
                     login.Ativo ? "Sim" : "Não",
-                    (int)login.TipoUsuario
+                    login.TipoUsuario
                 ));
             }
             return logins;
@@ -119,7 +120,7 @@ namespace FiapGames.Application.Servicos
                 login.Email,
                 login.PasswordHash = "",
                 login.Ativo ? "Sim" : "Não",
-                (int)login.TipoUsuario
+                login.TipoUsuario
             );
         }
     }
