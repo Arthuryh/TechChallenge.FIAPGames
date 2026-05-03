@@ -1,7 +1,7 @@
 ﻿using FiapGames.Application.DTOs.Login;
-using FiapGames.Application.Interfaces.Login;
-using FiapGames.Infrastructure.Interfaces;
+using FiapGames.Application.Interfaces;
 using FiapGames.Domain.Entidades;
+using FiapGames.Infrastructure.Interfaces;
 
 namespace FiapGames.Application.Servicos
 {
@@ -24,7 +24,7 @@ namespace FiapGames.Application.Servicos
             var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, senhaHash, (int)loginDTO.TipoUsuario);
             
             await _repositorio.AdicionarLogin(novoLogin);
-            
+
             return loginDTO;
         }
 

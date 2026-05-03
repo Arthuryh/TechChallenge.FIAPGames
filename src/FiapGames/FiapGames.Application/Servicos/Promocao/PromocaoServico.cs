@@ -1,5 +1,5 @@
 ﻿using FiapGames.Application.DTOs.Promocao;
-using FiapGames.Application.Interfaces;
+using FiapGames.Application.Interfaces.Promocao;
 using FiapGames.Domain.Entidades;
 using FiapGames.Infrastructure.Interfaces;
 

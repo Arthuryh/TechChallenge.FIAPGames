@@ -1,7 +1,7 @@
 ﻿using FiapGames.Infrastructure.Interfaces;
-using FiapGames.Infrastructure.Interfaces.Log;
+using FiapGames.Infrastructure.Interfaces.LogRepo;
 using FiapGames.Infrastructure.Repositorios;
-using FiapGames.Infrastructure.Repositorios.Logs;
+using FiapGames.Infrastructure.Repositorios.LogsRepo;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FiapGames.Infrastructure.DI

@@ -1,6 +1,6 @@
 ﻿using FiapGames.Application.DTOs.Login;
 
-namespace FiapGames.Application.Interfaces.Login
+namespace FiapGames.Application.Interfaces
 {
     public interface ILoginServico
     {

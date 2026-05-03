@@ -1,5 +1,5 @@
 ﻿using FiapGames.Domain.Entidades;
-using FiapGames.Infrastructure.Interfaces.Log;
+using FiapGames.Infrastructure.Interfaces.LogRepo;
 using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Text;

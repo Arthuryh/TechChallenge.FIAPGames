@@ -2,7 +2,7 @@
 using FiapGames.Application.Interfaces.Compra;
 using FiapGames.Application.Interfaces.Conta;
 using FiapGames.Domain.Entidades;
-using FiapGames.Infrastructure.Interfaces;     
+using FiapGames.Infrastructure.Interfaces;
 
 namespace FiapGames.Application.Servicos
 {
