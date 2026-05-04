@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FiapGames.Application.Interfaces.Biblioteca;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FiapGames.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BibliotecaController : ControllerBase
     {
         private readonly IBibliotecaServico _service;

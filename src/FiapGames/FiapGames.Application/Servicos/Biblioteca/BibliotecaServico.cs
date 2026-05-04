@@ -53,6 +53,9 @@ public class BibliotecaServico : IBibliotecaServico
         foreach (var item in biblioteca.Jogos)
         {
             var jogo = await _jogoRepo.JogoPorId(item.JogoId);
+            if (jogo == null)
+                throw new ArgumentException("Jogo não encontrado");
+
             listaJogos.Add(jogo);
         }
 

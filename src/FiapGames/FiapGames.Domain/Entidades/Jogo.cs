@@ -42,7 +42,7 @@
         public void AplicarPromocao(Promocao promocao)
         {
             if (!promocao.EstaAtiva())
-                throw new Exception("Promoção inválida");
+                throw new ArgumentException("Promoção inválida");
 
             Promocao = promocao;
             PromocaoId = promocao.Id;

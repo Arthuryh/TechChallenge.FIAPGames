@@ -24,7 +24,7 @@
                 throw new ArgumentException("Jogo inválido");
 
             if (Jogos.Any(x => x.JogoId == jogo.Id))
-                throw new Exception("Jogo já está na biblioteca");
+                throw new ArgumentException("Jogo já está na biblioteca");
 
             Jogos.Add(new BibliotecaJogo(jogo.Id));
         }
@@ -34,7 +34,7 @@
             var item = Jogos.FirstOrDefault(x => x.JogoId == jogoId);
 
             if (item == null)
-                throw new Exception("Jogo não encontrado na biblioteca");
+                throw new ArgumentException("Jogo não encontrado na biblioteca");
 
             Jogos.Remove(item);
         }

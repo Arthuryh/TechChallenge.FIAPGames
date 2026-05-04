@@ -40,7 +40,7 @@ namespace FiapGames.Tests.Domain
             biblioteca.AdicionarJogo(jogo);
             ;
 
-            Assert.Throws<Exception>(() =>
+            Assert.Throws<ArgumentException>(() =>
               biblioteca.AdicionarJogo(jogo));
         }
 
@@ -61,7 +61,7 @@ namespace FiapGames.Tests.Domain
         {
             var biblioteca = CriarBiblioteca();
 
-            Assert.Throws<Exception>(() =>
+            Assert.Throws<ArgumentException>(() =>
                 biblioteca.RemoverJogo(999));
         }
 

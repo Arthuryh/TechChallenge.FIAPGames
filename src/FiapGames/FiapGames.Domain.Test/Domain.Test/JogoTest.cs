@@ -93,7 +93,7 @@ namespace FiapGames.UnitTests.Domain
 
             promocao.Desativar();
 
-            Assert.Throws<Exception>(() =>
+            Assert.Throws<ArgumentException>(() =>
                 jogo.AplicarPromocao(promocao));
         }
 

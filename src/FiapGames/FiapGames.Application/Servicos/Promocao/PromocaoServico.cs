@@ -31,7 +31,7 @@ namespace FiapGames.Application.Servicos
             var promocao = await _repo.GetById(dto.Id);
 
             if (promocao == null)
-                throw new Exception("Promoção não encontrada");
+                throw new ArgumentException("Promoção não encontrada");
 
             promocao.Atualizar(
                 dto.Nome,
@@ -62,7 +62,7 @@ namespace FiapGames.Application.Servicos
             var x = await _repo.GetById(id);
 
             if (x == null)
-                throw new Exception("Promoção não encontrada");
+                throw new ArgumentException("Promoção não encontrada");
 
             return new PromocaoResponseDto(
                 x.Id,
@@ -79,7 +79,7 @@ namespace FiapGames.Application.Servicos
             var promocao = await _repo.GetById(id);
 
             if (promocao == null)
-                throw new Exception("Promoção não encontrada");
+                throw new ArgumentException("Promoção não encontrada");
 
             promocao.Desativar();
 
