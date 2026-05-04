@@ -8,7 +8,7 @@ namespace FiapGames.WebApi.Controllers.Jogo
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class JogoController : ControllerBase
     {
         private readonly IJogoServico _service;
@@ -19,6 +19,7 @@ namespace FiapGames.WebApi.Controllers.Jogo
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Criar(CriarJogoDto dto)
         {
             await _service.Criar(dto);
@@ -26,6 +27,7 @@ namespace FiapGames.WebApi.Controllers.Jogo
         }
 
         [HttpPost("promocao")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> AplicarPromo(AplicarPromocaoDto dto)
         {
             await _service.AplicarPromocao(dto);
