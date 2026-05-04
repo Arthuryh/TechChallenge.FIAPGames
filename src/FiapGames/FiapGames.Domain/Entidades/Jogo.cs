@@ -11,7 +11,7 @@
         public virtual Promocao? Promocao { get; private set; }
 
         public Jogo() { }
-        public Jogo(string nome, decimal preco, string descricao)
+        public Jogo(string nome, decimal preco, string descricao, int idJogo = 0)
         {
             if(string.IsNullOrEmpty(nome))
                 throw new ArgumentException("Nome do jogo é obrigatório");
@@ -21,6 +21,9 @@
 
             if (preco <= 0)
                 throw new ArgumentException("Preço precisa ser maior que 0.00");
+
+            if (idJogo >= 0)
+                Id = idJogo;
 
             Nome = nome;
             Preco = preco;

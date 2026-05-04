@@ -38,9 +38,10 @@ namespace FiapGames.Tests.Domain
             var jogo = CriarJogo();
 
             biblioteca.AdicionarJogo(jogo);
-            biblioteca.AdicionarJogo(jogo);
+            ;
 
-            Assert.Single(biblioteca.Jogos);
+            Assert.Throws<Exception>(() =>
+              biblioteca.AdicionarJogo(jogo));
         }
 
         [Fact]
@@ -74,7 +75,8 @@ namespace FiapGames.Tests.Domain
             return new Jogo(
                 _faker.Commerce.ProductName(),
                 _faker.Random.Decimal(50, 300),
-                _faker.Lorem.Sentence()
+                _faker.Lorem.Sentence(),
+                _faker.Random.Int(1, 1000)
             );
         }
     }
