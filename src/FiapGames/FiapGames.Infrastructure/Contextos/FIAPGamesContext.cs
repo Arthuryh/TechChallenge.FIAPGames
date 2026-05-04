@@ -15,6 +15,9 @@ namespace FiapGames.Infrastructure.Contextos
         public DbSet<Compra> Compras { get; set; }
         public DbSet<CompraJogo> CompraJogos { get; set; }
         public DbSet<LogMensagem> Logs { get; set; }
+        public DbSet<Biblioteca> Bibliotecas { get; set; }
+        public DbSet<BibliotecaJogo> BibliotecaJogos { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -41,6 +44,9 @@ namespace FiapGames.Infrastructure.Contextos
                     .WithOne(c => c.Login)
                     .HasForeignKey<Conta>(c => c.IdLogin)
                     .OnDelete(DeleteBehavior.Cascade);
+
+
+
             });
 
             builder.Entity<Conta>(entity =>
@@ -82,6 +88,29 @@ namespace FiapGames.Infrastructure.Contextos
             builder.Entity<CompraJogo>(entity =>
             {
                 entity.HasKey(x => new { x.CompraId, x.JogoId });
+            });
+
+            builder.Entity<Biblioteca>(entity =>
+            {
+                entity.HasKey(x => x.IdBiblioteca);
+
+                entity.HasMany(x => x.Jogos)
+                      .WithOne()
+                      .HasForeignKey("BibliotecaId")
+                      .OnDelete(DeleteBehavior.Cascade);
+            });
+
+            builder.Entity<BibliotecaJogo>(entity =>
+            {
+                entity.HasKey(x => new { x.BibliotecaId, x.JogoId });
+
+                entity.Property(x => x.DataAdicao)
+                      .IsRequired();
+
+                entity.HasOne<Jogo>()
+                      .WithMany()
+                      .HasForeignKey(x => x.JogoId)
+                      .OnDelete(DeleteBehavior.Cascade);
             });
         }
     }

@@ -5,7 +5,7 @@
         public int IdBiblioteca { get; private set; }
         public int IdConta { get; private set; }
 
-        public List<BibliotecaJogo> Jogos { get; private set; }
+        public virtual List<BibliotecaJogo> Jogos { get; private set; }
 
         private Biblioteca() { }
 

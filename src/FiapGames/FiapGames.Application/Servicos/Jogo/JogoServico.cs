@@ -34,9 +34,7 @@ namespace FiapGames.Application.Servicos
             {
                 var promo = await _promoRepo.GetById(dto.PromocaoId);
                 jogo.AplicarPromocao(promo);
-
             }
-
 
             await _repo.Update(jogo);
         }
