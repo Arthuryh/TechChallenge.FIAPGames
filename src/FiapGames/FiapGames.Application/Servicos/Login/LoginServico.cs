@@ -15,10 +15,6 @@ namespace FiapGames.Application.Servicos
 
         public async Task<CriarLoginDTO> CriarLogin(CriarLoginDTO loginDTO)
         {
-            //mover pra entidade
-            if (string.IsNullOrWhiteSpace(loginDTO.PasswordHash)) 
-                throw new ArgumentException("A senha não pode estar vazia.");
-
             string senhaHash = BCrypt.Net.BCrypt.HashPassword(loginDTO.PasswordHash);
 
             var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, senhaHash, (int)loginDTO.TipoUsuario);
@@ -81,11 +77,11 @@ namespace FiapGames.Application.Servicos
         public async Task AtualizarLogin(AtualizarLoginDTO loginDTO)
         {
             var login = await _repositorio.ObterLoginPorId(loginDTO.IdLogin);
+            string senhaHash = BCrypt.Net.BCrypt.HashPassword(loginDTO.PasswordHash);
 
             if (login == null) throw new ArgumentException("Login não encontrado");
 
-            login.AtualizarLogin(loginDTO.Nome, loginDTO.Email, loginDTO.PasswordHash);
-
+            login.AtualizarLogin(loginDTO.Nome, loginDTO.Email, senhaHash); 
             await _repositorio.AtualizarLogin(login);
         }
 
@@ -100,14 +96,14 @@ namespace FiapGames.Application.Servicos
             await _repositorio.AtualizarLogin(login);
         }
 
-        public async Task<LerLoginDTO> ValidarCredenciaisAsync(string email, string password)
+        public async Task<LerLoginDTO> ValidarCredenciaisAsync(LogarLoginDTO logarLogin)
         {
-            var login = await _repositorio.ObterLoginPorEmail(email);
+            var login = await _repositorio.ObterLoginPorEmail(logarLogin.Email);
             if (login == null)
             {
                 throw new ArgumentException("Credenciais inválidas");
             }
-            bool senhaValida = BCrypt.Net.BCrypt.Verify(password, login.PasswordHash);
+            bool senhaValida = BCrypt.Net.BCrypt.Verify(logarLogin.PasswordHash, login.PasswordHash);
             if (!senhaValida)
             {
                 throw new ArgumentException("Credenciais inválidas");

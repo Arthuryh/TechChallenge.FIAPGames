@@ -1,4 +1,6 @@
-﻿namespace FiapGames.Domain.Entidades
+﻿using System.Text.RegularExpressions;
+
+namespace FiapGames.Domain.Entidades
 {
     public class Login
     {
@@ -13,6 +15,12 @@
         protected Login() { }
         public Login(string nome, string email, string passwordHash, int tipoUsuario)
         {
+            if (string.IsNullOrEmpty(nome))
+                throw new ArgumentException("O nome é obrigatório.");
+
+            if (!Regex.IsMatch(email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
+                throw new ArgumentException("E-mail com formato inválido.");
+
             Nome = nome;
             Email = email;
             PasswordHash = passwordHash;

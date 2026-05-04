@@ -1,4 +1,5 @@
-﻿using FiapGames.Application.Interfaces;
+﻿using FiapGames.Application.DTOs.Login;
+using FiapGames.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -19,13 +20,15 @@ namespace FiapGames.WebApi.Controllers.Auth
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(string email, string senha)
+        public async Task<IActionResult> Login(LogarLoginDTO logarLogin)
         {
-            var usuario = await _loginServico.ValidarCredenciaisAsync(email, senha);
+            var usuario = await _loginServico.ValidarCredenciaisAsync(logarLogin);
+
             if (usuario == null)
             {
                 return Unauthorized("Credenciais inválidas");
             }
+
             var token = _tokenServico.GerarToken(usuario);
             return Ok(new { Token = token });
         }

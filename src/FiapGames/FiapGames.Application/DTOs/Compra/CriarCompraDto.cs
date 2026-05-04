@@ -1,7 +1,12 @@
-﻿namespace FiapGames.Application.DTOs.Compra
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FiapGames.Application.DTOs.Compra
 {
     public record CriarCompraDto(
+        [Required(ErrorMessage = "A compra precisa ter pelo menos um ID de um Jogo")]
         List<int> JogosIds,
+
+        [Required(ErrorMessage = "O ID do usuário é obrigatório para realizar a compra")]
         int IdUsuario
     );
 }
