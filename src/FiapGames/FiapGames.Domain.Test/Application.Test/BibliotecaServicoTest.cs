@@ -1,6 +1,4 @@
-﻿using FiapGames.Application.Servicos;
-using FiapGames.Application.Servicos.Biblioteca;
-using FiapGames.Domain.Entidades;
+﻿using FiapGames.Domain.Entidades;
 using FiapGames.Infrastructure.Interfaces;
 using Moq;
 
@@ -32,7 +30,7 @@ namespace FiapGames.Tests.Application
             _repoMock.Setup(x => x.ObterPorConta(1))
                      .ReturnsAsync(biblioteca);
 
-            _jogoRepoMock.Setup(x => x.GetById(2))
+            _jogoRepoMock.Setup(x => x.JogoPorId(2))
                          .ReturnsAsync(jogo);
 
             await _service.AdicionarJogo(1, 2);
@@ -49,7 +47,7 @@ namespace FiapGames.Tests.Application
             _repoMock.Setup(x => x.ObterPorConta(1))
                      .ReturnsAsync(biblioteca);
 
-            _jogoRepoMock.Setup(x => x.GetById(It.IsAny<int>()))
+            _jogoRepoMock.Setup(x => x.JogoPorId(It.IsAny<int>()))
                          .ReturnsAsync((Jogo)null);
 
             await Assert.ThrowsAsync<ArgumentException>(() =>
@@ -73,26 +71,9 @@ namespace FiapGames.Tests.Application
             _repoMock.Verify(x => x.Atualizar(biblioteca), Times.Once);
         }
 
-        [Fact]
-        public async Task Deve_Avaliar_Jogo()
-        {
-            var biblioteca = new Biblioteca(1);
-            var jogo = CriarJogo();
-
-            biblioteca.AdicionarJogo(jogo);
-
-            _repoMock.Setup(x => x.ObterPorConta(1))
-                     .ReturnsAsync(biblioteca);
-
-            await _service.AvaliarJogo(1, jogo.Id, 5);
-
-            Assert.Equal(5, biblioteca.Jogos.First().Avaliacao);
-            _repoMock.Verify(x => x.Atualizar(biblioteca), Times.Once);
-        }
-
         private Jogo CriarJogo()
         {
-            return new Jogo("Jogo Teste", 100, "Desc");
+            return new Jogo("Jogo Teste", 100, "Desc",1);
         }
     }
 }

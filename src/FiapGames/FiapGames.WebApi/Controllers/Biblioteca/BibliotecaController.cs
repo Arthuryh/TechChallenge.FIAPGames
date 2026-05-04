@@ -1,43 +1,39 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using FiapGames.Application.Interfaces.Biblioteca;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
-namespace FiapGames.WebApi.Controllers.Biblioteca
+namespace FiapGames.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class BibliotecaController : ControllerBase
     {
-        // GET: api/<BibliotecaController>
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private readonly IBibliotecaServico _service;
+
+        public BibliotecaController(IBibliotecaServico service)
         {
-            return new string[] { "value1", "value2" };
+            _service = service;
         }
 
-        // GET api/<BibliotecaController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
+        [HttpDelete("{contaId}/jogos/{jogoId}")]
+        public async Task<IActionResult> RemoverJogo(int contaId, int jogoId)
         {
-            return "value";
+            try
+            {
+                await _service.RemoverJogo(contaId, jogoId);
+                return Ok(new { mensagem = "Jogo removido da biblioteca" });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { erro = ex.Message });
+            }
         }
 
-        // POST api/<BibliotecaController>
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpGet("{contaId}")]
+        public async Task<IActionResult> BibliotecaUsuario(int contaId)
         {
-        }
+            var biblioteca = await _service.BibliotecaUsuario(contaId);
 
-        // PUT api/<BibliotecaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        // DELETE api/<BibliotecaController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return Ok(biblioteca);
         }
     }
 }

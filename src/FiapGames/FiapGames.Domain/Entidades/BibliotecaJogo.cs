@@ -6,7 +6,7 @@
         public int JogoId { get; private set; }
         public DateTime DataAdicao { get; private set; }
 
-        private BibliotecaJogo() { }
+        public BibliotecaJogo() { }
 
         public BibliotecaJogo(int jogoId)
         {

@@ -1,4 +1,5 @@
 ﻿using FiapGames.Application.DTOs.Compra;
+using FiapGames.Application.Interfaces.Biblioteca;
 using FiapGames.Application.Interfaces.Compra;
 using FiapGames.Application.Interfaces.Conta;
 using FiapGames.Domain.Entidades;
@@ -11,12 +12,14 @@ namespace FiapGames.Application.Servicos
         private readonly ICompraRepositorio _repo;
         private readonly IJogoRepositorio _jogoRepo;
         private readonly IContaServico _contaServico;
+        private readonly IBibliotecaServico _bibliotecaServico;
 
-        public CompraServico(ICompraRepositorio repo, IJogoRepositorio jogoRepo, IContaServico contaServico)
+        public CompraServico(ICompraRepositorio repo, IJogoRepositorio jogoRepo, IContaServico contaServico, IBibliotecaServico bibliotecaServico)
         {
             _repo = repo;
             _jogoRepo = jogoRepo;
             _contaServico = contaServico;
+            _bibliotecaServico = bibliotecaServico;
         }
 
         public async Task CriarCompra(CriarCompraDto dto)
@@ -25,8 +28,8 @@ namespace FiapGames.Application.Servicos
 
             foreach (var jogoId in dto.JogosIds)
             {
-                var jogo = await _jogoRepo.GetById(jogoId);
-                if(jogo == null)
+                var jogo = await _jogoRepo.JogoPorId(jogoId);
+                if (jogo == null)
                     throw new ArgumentException("Jogo não encontrado: " + jogoId);
                 compra.AdicionarItem(jogo);
             }
@@ -34,6 +37,11 @@ namespace FiapGames.Application.Servicos
             await _repo.Add(compra);
 
             await _contaServico.DebitarSaldo(new DTOs.Conta.ContaDto(dto.IdUsuario, compra.ValorTotalLiquido));
+
+            foreach (var jogoId in dto.JogosIds)
+            {
+                await _bibliotecaServico.AdicionarJogo(dto.IdUsuario, jogoId);
+            }
         }
     }
 }

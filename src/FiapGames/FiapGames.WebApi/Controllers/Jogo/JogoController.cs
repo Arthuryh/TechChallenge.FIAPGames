@@ -31,5 +31,19 @@ namespace FiapGames.WebApi.Controllers.Jogo
             await _service.AplicarPromocao(dto);
             return Ok();
         }
+
+        [HttpGet]
+        public async Task<IActionResult> Jogos()
+        {
+            var jogos = await _service.ListaJogos();
+            return Ok(jogos);
+        }
+
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> JogoPorId(int id)
+        {
+            var jogo = await _service.JogoPorId(id);
+            return Ok(jogo);
+        }
     }
 }

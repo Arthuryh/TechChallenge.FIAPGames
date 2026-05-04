@@ -7,7 +7,7 @@
 
         public virtual List<BibliotecaJogo> Jogos { get; private set; }
 
-        private Biblioteca() { }
+        public Biblioteca() { }
 
         public Biblioteca(int idConta)
         {
