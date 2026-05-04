@@ -5,7 +5,7 @@ namespace FiapGames.Application.DTOs.Biblioteca
     public record BibliotecaResponse
     (
          int ContaId,
-         IEnumerable<JogoResponseDto> Jogos
+         IEnumerable<BibliotecaJogoResponseDto> Jogos
     );
 
 }

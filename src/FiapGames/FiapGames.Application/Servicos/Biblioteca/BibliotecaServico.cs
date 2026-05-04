@@ -63,22 +63,14 @@ public class BibliotecaServico : IBibliotecaServico
         var bibliotecaResponse = new BibliotecaResponse
         (
             biblioteca.IdConta,
-            listaJogos.Select(x => new JogoResponseDto
+            listaJogos.Select(x => new BibliotecaJogoResponseDto
             (
                  x.Id,
                  x.Nome,
                  x.Preco,
                  x.ObterPrecoAtual(),
                  x.Descricao,
-                    x.DataLancamento,
-                    x.Promocao == null ? null : new PromocaoResponseDto(
-                    x.Promocao.Id,
-                    x.Promocao.Nome,
-                    x.Promocao.TaxaDesconto,
-                    x.Promocao.DataInicio,
-                    x.Promocao.DataFim,
-                    x.Promocao.Ativo
-                )
+                 x.DataLancamento
             )).ToList()
 
         );

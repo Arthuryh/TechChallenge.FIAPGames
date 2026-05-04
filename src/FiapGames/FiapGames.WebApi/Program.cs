@@ -1,17 +1,18 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 using FiapGames.Application.DI;
+using FiapGames.Infrastructure;
 using FiapGames.Infrastructure.Contextos;
 using FiapGames.Infrastructure.DI;
 using FiapGames.Infrastructure.Middlewares;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System.Net;
 using System.Text;
 
 internal class Program
 {
-    private static void Main(string[] args)
+    private static async Task Main(string[] args)
     {
         var builder = WebApplication.CreateBuilder(args);
 
@@ -111,6 +112,12 @@ internal class Program
         app.UseAuthorization();
 
         app.MapControllers();
+
+        using (var scope = app.Services.CreateScope())
+        {
+            var context = scope.ServiceProvider.GetRequiredService<FIAPGamesContext>();
+            await DbInitializer.SeedAsync(context);
+        }
 
         app.Run();
     }

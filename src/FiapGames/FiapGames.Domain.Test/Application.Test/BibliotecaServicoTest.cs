@@ -131,47 +131,6 @@ namespace FiapGames.Tests.Application
                 _service.BibliotecaUsuario(1));
         }
 
-        [Fact]
-        public async Task Deve_Mapear_Promocao_Quando_Existir()
-        {
-            var biblioteca = new Biblioteca(1);
-
-            var promocao = new Promocao("Promo", 10, DateTime.Now.AddDays(-1), DateTime.Now.AddDays(1));
-            var jogo = CriarJogo();
-
-            jogo.AplicarPromocao(promocao);
-            biblioteca.AdicionarJogo(jogo);
-
-            _repoMock.Setup(x => x.ObterPorConta(1))
-                     .ReturnsAsync(biblioteca);
-
-            _jogoRepoMock.Setup(x => x.JogoPorId(jogo.Id))
-                         .ReturnsAsync(jogo);
-
-            var result = await _service.BibliotecaUsuario(1);
-
-            Assert.NotNull(result.Jogos.First().Promocao);
-        }
-
-        [Fact]
-        public async Task Deve_Retornar_Promocao_Nula_Quando_Nao_Existir()
-        {
-            var biblioteca = new Biblioteca(1);
-            var jogo = CriarJogo();
-
-            biblioteca.AdicionarJogo(jogo);
-
-            _repoMock.Setup(x => x.ObterPorConta(1))
-                     .ReturnsAsync(biblioteca);
-
-            _jogoRepoMock.Setup(x => x.JogoPorId(jogo.Id))
-                         .ReturnsAsync(jogo);
-
-            var result = await _service.BibliotecaUsuario(1);
-
-            Assert.Null(result.Jogos.First().Promocao);
-        }
-
         private Jogo CriarJogo()
         {
             return new Jogo("Jogo Teste", 100, "Desc",1);
