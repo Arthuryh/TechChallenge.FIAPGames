@@ -48,5 +48,10 @@ namespace FiapGames.Domain.Entidades
         {
             Ativo = false;
         }
+
+        public void TrocarSenha(string novaSenhaHash)
+        {
+            PasswordHash = novaSenhaHash;
+        }
     }
 }

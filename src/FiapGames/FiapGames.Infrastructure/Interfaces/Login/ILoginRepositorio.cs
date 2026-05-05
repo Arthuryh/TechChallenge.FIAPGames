@@ -9,5 +9,6 @@ namespace FiapGames.Infrastructure.Interfaces
         Task<IEnumerable<Login>> ObterLogins();
         Task AdicionarLogin(Login login);
         Task AtualizarLogin(Login login);
+        Task TrocarSenha(Login login);
     }
 }

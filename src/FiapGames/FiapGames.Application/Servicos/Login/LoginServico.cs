@@ -18,7 +18,7 @@ namespace FiapGames.Application.Servicos
             string senhaHash = BCrypt.Net.BCrypt.HashPassword(loginDTO.PasswordHash);
 
             var novoLogin = new Login(loginDTO.Nome, loginDTO.Email, senhaHash, (int)loginDTO.TipoUsuario);
-            
+
             await _repositorio.AdicionarLogin(novoLogin);
 
             return loginDTO;
@@ -81,7 +81,7 @@ namespace FiapGames.Application.Servicos
 
             if (login == null) throw new ArgumentException("Login não encontrado");
 
-            login.AtualizarLogin(loginDTO.Nome, loginDTO.Email, senhaHash); 
+            login.AtualizarLogin(loginDTO.Nome, loginDTO.Email, senhaHash);
             await _repositorio.AtualizarLogin(login);
         }
 
@@ -118,6 +118,19 @@ namespace FiapGames.Application.Servicos
                 login.Ativo ? "Sim" : "Não",
                 login.TipoUsuario
             );
+        }
+
+        public async Task TrocarSenhaAsync(TrocarSenhaDTO trocarSenha)
+        {
+            var login = await _repositorio.ObterLoginPorEmail(trocarSenha.Email);
+            if (login == null)
+            {
+                throw new ArgumentException("E-mail não encontrado");
+            }
+
+            string novaSenhaHash = BCrypt.Net.BCrypt.HashPassword(trocarSenha.NovaSenha);
+            login.TrocarSenha(novaSenhaHash);
+            await _repositorio.TrocarSenha(login);
         }
     }
 }

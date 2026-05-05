@@ -11,5 +11,6 @@ namespace FiapGames.Application.Interfaces
         Task AtualizarLogin(AtualizarLoginDTO loginDTO);
         Task DeletarLogin(int id);
         Task<LerLoginDTO>ValidarCredenciaisAsync(LogarLoginDTO loginDTO);
+        Task TrocarSenhaAsync(TrocarSenhaDTO trocarSenha);
     }
 }
