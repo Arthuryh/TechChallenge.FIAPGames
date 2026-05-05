@@ -36,7 +36,7 @@ namespace FiapGames.Tests.Application
             var jogo = new Jogo("Jogo", 100, "Desc");
             var promo = new Promocao("Promo", 10, DateTime.Now, DateTime.Now.AddDays(1));
 
-            _repoMock.Setup(x => x.GetById(1)).ReturnsAsync(jogo);
+            _repoMock.Setup(x => x.JogoPorId(1)).ReturnsAsync(jogo);
             _promoMock.Setup(x => x.GetById(2)).ReturnsAsync(promo);
 
             var dto = new AplicarPromocaoDto(1, 2);

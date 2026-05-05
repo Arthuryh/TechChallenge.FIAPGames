@@ -1,4 +1,6 @@
-﻿namespace FiapGames.Application.DTOs.Jogo
+﻿using FiapGames.Application.DTOs.Promocao;
+
+namespace FiapGames.Application.DTOs.Jogo
 {
     public record JogoResponseDto(
      int Id,
@@ -7,6 +9,6 @@
      decimal PrecoAtual,
      string Descricao,
      DateTime DataLancamento,
-     int? PromocaoId
+     PromocaoResponseDto Promocao
  );
 }

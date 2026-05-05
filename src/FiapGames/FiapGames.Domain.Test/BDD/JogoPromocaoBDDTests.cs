@@ -58,7 +58,7 @@ namespace FiapGames.Tests.BDD
             );
 
             // QUANDO / ENTÃO
-            Assert.Throws<Exception>(() =>
+            Assert.Throws<ArgumentException>(() =>
                 jogo.AplicarPromocao(promocao));
         }
 
@@ -78,7 +78,7 @@ namespace FiapGames.Tests.BDD
             promocao.Desativar();
 
             // QUANDO / ENTÃO
-            Assert.Throws<Exception>(() =>
+            Assert.Throws<ArgumentException>(() =>
                 jogo.AplicarPromocao(promocao));
         }
 

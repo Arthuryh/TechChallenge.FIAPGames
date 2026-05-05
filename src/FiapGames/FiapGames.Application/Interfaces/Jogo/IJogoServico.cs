@@ -7,5 +7,7 @@ namespace FiapGames.Application.Interfaces.Jogo
     {
         Task Criar(CriarJogoDto dto);
         Task AplicarPromocao(AplicarPromocaoDto dto);
+        Task<IEnumerable<JogoResponseDto>> ListaJogos();
+        Task<JogoResponseDto> JogoPorId(int idJogo);
     }
 }

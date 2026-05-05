@@ -1,6 +1,7 @@
 ﻿using FiapGames.Infrastructure.Interfaces;
 using FiapGames.Infrastructure.Interfaces.LogRepo;
 using FiapGames.Infrastructure.Repositorios;
+using FiapGames.Infrastructure.Repositorios.Biblioteca;
 using FiapGames.Infrastructure.Repositorios.LogsRepo;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,6 +17,7 @@ namespace FiapGames.Infrastructure.DI
             services.AddScoped<IPromocaoRepositorio, PromocaoRepositorio>();
             services.AddScoped<ILogRepositorio, LogRepositorio>();
             services.AddScoped<IContaRepositorio, ContaRepositorio>();
+            services.AddScoped<IBibliotecaRepositorio, BibliotecaRepositorio>();
 
             return services;
         }

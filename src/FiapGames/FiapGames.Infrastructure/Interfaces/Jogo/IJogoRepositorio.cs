@@ -4,8 +4,9 @@ namespace FiapGames.Infrastructure.Interfaces
 {
     public interface IJogoRepositorio
     {
-        Task<Jogo> GetById(int id);
+        Task<Jogo> JogoPorId(int id);
         Task Add(Jogo jogo);
         Task Update(Jogo jogo);
+        Task<IEnumerable<Jogo>> GetListaJogos();
     }
 }

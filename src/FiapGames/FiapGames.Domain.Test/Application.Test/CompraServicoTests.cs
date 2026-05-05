@@ -4,6 +4,7 @@ using FiapGames.Infrastructure.Interfaces;
 using FiapGames.Application.DTOs.Compra;
 using FiapGames.Domain.Entidades;
 using FiapGames.Application.Interfaces.Conta;
+using FiapGames.Application.Interfaces.Biblioteca;
 
 namespace FiapGames.Tests.Application
 {
@@ -12,6 +13,7 @@ namespace FiapGames.Tests.Application
         private readonly Mock<ICompraRepositorio> _repoMock;
         private readonly Mock<IJogoRepositorio> _jogoMock;
         private readonly Mock<IContaServico> _contaSvcMock;
+        private readonly Mock<IBibliotecaServico> _bibliotecaSvc;
         private readonly CompraServico _service;
 
         public CompraServicoTests()
@@ -19,7 +21,8 @@ namespace FiapGames.Tests.Application
             _repoMock = new Mock<ICompraRepositorio>();
             _jogoMock = new Mock<IJogoRepositorio>();
             _contaSvcMock = new Mock<IContaServico>();
-            _service = new CompraServico(_repoMock.Object, _jogoMock.Object, _contaSvcMock.Object);
+            _bibliotecaSvc = new Mock<IBibliotecaServico>();
+            _service = new CompraServico(_repoMock.Object, _jogoMock.Object, _contaSvcMock.Object, _bibliotecaSvc.Object);
         }
 
         [Fact]
@@ -27,7 +30,7 @@ namespace FiapGames.Tests.Application
         {
             var jogo = new Jogo("Jogo", 100, "Desc");
 
-            _jogoMock.Setup(x => x.GetById(It.IsAny<int>()))
+            _jogoMock.Setup(x => x.JogoPorId(It.IsAny<int>()))
                      .ReturnsAsync(jogo);
 
             var dto = new CriarCompraDto(new List<int> { 1, 2 },1);

@@ -35,7 +35,7 @@ namespace FiapGames.Tests.Application
 
             var dto = new AtualizarPromocaoDto(1, "Promo", 10, DateTime.Now, DateTime.Now.AddDays(1));
 
-            await Assert.ThrowsAsync<Exception>(() => _service.Atualizar(dto));
+            await Assert.ThrowsAsync<ArgumentException>(() => _service.Atualizar(dto));
         }
 
         [Fact]

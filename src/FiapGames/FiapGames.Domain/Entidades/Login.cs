@@ -18,6 +18,12 @@ namespace FiapGames.Domain.Entidades
             if (string.IsNullOrEmpty(nome))
                 throw new ArgumentException("O nome é obrigatório.");
 
+            if (string.IsNullOrEmpty(email))
+                throw new ArgumentException("O email é obrigatório.");
+
+            if (string.IsNullOrEmpty(passwordHash))
+                throw new ArgumentException("A senha é obrigatória.");
+
             if (!Regex.IsMatch(email, @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"))
                 throw new ArgumentException("E-mail com formato inválido.");
 
