@@ -32,5 +32,11 @@ namespace FiapGames.WebApi.Controllers.Auth
             var token = _tokenServico.GerarToken(usuario);
             return Ok(new { Token = token });
         }
+        [HttpPost("trocar-senha")]
+        public async Task<IActionResult> TrocarSenha(TrocarSenhaDTO trocarSenha)
+        {
+            await _loginServico.TrocarSenhaAsync(trocarSenha);
+            return Ok("Senha trocada com sucesso.");
+        }
     }
 }

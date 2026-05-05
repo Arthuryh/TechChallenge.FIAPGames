@@ -48,5 +48,11 @@ namespace FiapGames.Infrastructure.Repositorios
                 //.Include(l => l.Conta)
                 .ToListAsync();
         }
+
+        public async Task TrocarSenha(Login login)
+        {
+            _context.Logins.Update(login);
+            await _context.SaveChangesAsync();
+        }
     }
 }
