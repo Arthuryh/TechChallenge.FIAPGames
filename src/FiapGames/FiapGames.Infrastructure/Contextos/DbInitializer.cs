@@ -17,9 +17,9 @@ namespace FiapGames.Infrastructure
                 if (context.Logins.Any())
                     return;
 
-                var admin = new Login("admin", "admin@admin.com", BCrypt.Net.BCrypt.HashPassword("Admin@123"), 0);
+                var admin = new Login("admin", "admin@admin.com", BCrypt.Net.BCrypt.HashPassword("Admin@123"), 1);
 
-                var usuario = new Login("user", "user@user.com", BCrypt.Net.BCrypt.HashPassword("User@123"), 1);
+                var usuario = new Login("user", "user@user.com", BCrypt.Net.BCrypt.HashPassword("User@123"), 2);
 
                 var jogos = new List<Jogo>
             {
