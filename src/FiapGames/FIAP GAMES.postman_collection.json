@@ -1,0 +1,855 @@
+{
+  "info": {
+    "_postman_id": "1c5d1ada-0302-4aaa-9402-4095571fb858",
+    "name": "FIAP GAMES",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "32693269"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Logar",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"user@user.com\",\r\n  \"passwordHash\": \"User@123\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Auth/login",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Auth",
+                "login"
+              ],
+              "query": [
+                {
+                  "key": "email",
+                  "value": "ana",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "senha",
+                  "value": "ana",
+                  "type": "text",
+                  "disabled": true
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "TrocarSenha",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"email\": \"string\",\r\n  \"novaSenha\": \"string\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Auth/trocar-senha",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Auth",
+                "trocar-senha"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Login",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"string\",\r\n  \"email\": \"string\",\r\n  \"passwordHash\": \"string\",\r\n  \"tipoUsuario\": 0\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Login",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logins",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7272/api/Login",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idLogin\": 4,\r\n  \"nome\": \"Ana\",\r\n  \"email\": \"ana@email.com\",\r\n  \"passwordHash\": \"Senha!4321\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Login",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LoginID",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Login/1",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Login",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LoginID",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Login/1",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Login",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "LoginEMAIL",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7272/api/Login/email/ana@email.com",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Login",
+                "email",
+                "ana@email.com"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Jogo",
+      "item": [
+        {
+          "name": "NovoJogo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"Call Of Duty\",\r\n  \"preco\": 300,\r\n  \"descricao\": \"Jogo de tiro e ação.\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Jogo",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Jogo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Jogos",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7272/api/Jogo",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Jogo"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "JogoNaPromocao",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"jogoId\": 7,\r\n  \"promocaoId\": 3\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Jogo/promocao",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Jogo",
+                "promocao"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Jogo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_usuario}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7272/api/Jogo/1",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Jogo",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Conta",
+      "item": [
+        {
+          "name": "Saldo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_usuario}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7272/api/Conta/4",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Conta",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "AdicionarSaldo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_usuario}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"idConta\": 4,\r\n  \"valor\": 500\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Conta/depositar",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Conta",
+                "depositar"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Compra",
+      "item": [
+        {
+          "name": "ComprarJogo",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_usuario}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"jogosIds\": [\r\n    7\r\n  ],\r\n  \"idUsuario\": 4\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Compra",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Compra"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Biblioteca",
+      "item": [
+        {
+          "name": "BibliotecaJogo",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7272/api/Biblioteca/{contaId}/{jogoId}",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Biblioteca",
+                "{contaId}",
+                "{jogoId}"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Biblioteca",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_usuario}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7272/api/Biblioteca/4",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Biblioteca",
+                "4"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Promocao",
+      "item": [
+        {
+          "name": "CriarPromocao",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"nome\": \"PromocaoVerao\",\r\n  \"taxaDesconto\": 70,\r\n  \"dataInicio\": \"2026-04-30T23:42:31.888Z\",\r\n  \"dataFim\": \"2026-05-30T23:42:31.888Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Promocao",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Promocao"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Promocao",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"id\": 0,\r\n  \"nome\": \"string\",\r\n  \"taxaDesconto\": 0,\r\n  \"dataInicio\": \"2026-05-04T01:42:28.366Z\",\r\n  \"dataFim\": \"2026-05-04T01:42:28.366Z\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://localhost:7272/api/Promocao",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Promocao"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Promocões",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7272/api/Promocao",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Promocao"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Promocao",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7272/api/Promocao/1",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Promocao",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Promocao",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{token_admin}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://localhost:7272/api/Promocao/10",
+              "protocol": "https",
+              "host": [
+                "localhost"
+              ],
+              "port": "7272",
+              "path": [
+                "api",
+                "Promocao",
+                "10"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwiZW1haWwiOiJhZG1pbkBhZG1pbi5jb20iLCJyb2xlIjoiQWRtaW4iLCJuYmYiOjE3Nzc5NDk1NjQsImV4cCI6MTc3Nzk1MzE2NCwiaWF0IjoxNzc3OTQ5NTY0LCJpc3MiOiJGaWFwR2FtZXNBcGkiLCJhdWQiOiJGaWFwR2FtZXNDbGllbnRzIn0.QVjEvz9KO2qLEgnYyMt6_r6EHm3ppJqgNSgJogYKKn8",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "token_admin",
+      "value": ""
+    },
+    {
+      "key": "token_usuario",
+      "value": ""
+    }
+  ]
+}
